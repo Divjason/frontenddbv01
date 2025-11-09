@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"
+    />
+    <title>화해 - 정보 입력</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* (기존 스타일 유지 – 필요 부분만 발췌/축약 가능) */
+      .mobile-container {
+        width: 100%;
+        max-width: 402px;
+        min-height: 100vh;
+        margin: 0 auto;
+        background: #fff;
+        padding-bottom: 180px;
+      }
+      .page-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111;
+        margin: 100px 0 0 20px;
+        padding-bottom: 10px;
+      }
+      .form-section {
+        padding: 0 20px;
+        margin-top: 10px;
+      }
+      .form-label {
+        font-size: 15px;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 14px;
+      }
+      .form-input {
+        width: 342px;
+        height: 43px;
+        padding: 10px 20px;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        font-size: 12px;
+        color: #111;
+        margin-bottom: 20px;
+      }
+      .date-selectors {
+        display: flex;
+        gap: 15px;
+        margin-bottom: 32px;
+        position: relative;
+      }
+      .date-input-wrapper {
+        position: relative;
+      }
+      .date-input {
+        width: 128px;
+        height: 43px;
+        padding: 10px 20px;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        font-size: 12px;
+        color: #666;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        cursor: pointer;
+        background: #fff;
+      }
+      .date-input.month,
+      .date-input.day {
+        width: 95px;
+      }
+      .date-input.selected {
+        color: #111;
+      }
+      .date-dropdown {
+        position: absolute;
+        top: 48px;
+        left: 0;
+        width: 100%;
+        max-height: 200px;
+        overflow-y: auto;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        z-index: 1000;
+        display: none;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      }
+      .date-dropdown.open {
+        display: block;
+      }
+      .date-option {
+        padding: 10px 20px;
+        font-size: 12px;
+        color: #111;
+        cursor: pointer;
+        border-bottom: 1px solid #f5f5f5;
+      }
+      .gender-buttons {
+        display: flex;
+        gap: 22px;
+        width: 362px;
+        margin: 0 auto 32px;
+        justify-content: center;
+      }
+      .gender-btn {
+        width: 95px;
+        height: 43px;
+        padding: 10px 20px;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        background: #fff;
+        font-size: 12px;
+        color: #666;
+        cursor: pointer;
+      }
+      .gender-btn.active {
+        border-color: #19d7d2;
+        background: #19d7d2;
+        color: #fff;
+      }
+      .next-button {
+        display: block;
+        margin: 150px auto 20px;
+        width: 362px;
+        max-width: calc(100% - 40px);
+        height: 43px;
+        background: #19d7d2;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body data-page="signup_info">
+    <div class="mobile-container">
+      <h1 class="page-title">당신의 정보를 입력해주세요</h1>
+
+      <!-- 폼으로 감싸기 -->
+      <form id="infoForm" autocomplete="off">
+        <div class="form-section">
+          <div class="form-label">닉네임</div>
+          <input
+            type="text"
+            class="form-input"
+            name="nickname"
+            placeholder="닉네임을 입력해주세요"
+            required
+          />
+        </div>
+
+        <div class="form-section">
+          <div class="form-label">나이</div>
+          <div class="date-selectors">
+            <div class="date-input-wrapper">
+              <div class="date-input" onclick="toggleDropdown(this, 'year')">
+                <span class="date-value">년도</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6L8 10L12 6" stroke="#E8E8E8" stroke-width="2" />
+                </svg>
+              </div>
+              <div class="date-dropdown" id="year-dropdown"></div>
+            </div>
+            <div class="date-input-wrapper">
+              <div
+                class="date-input month"
+                onclick="toggleDropdown(this, 'month')"
+              >
+                <span class="date-value">월</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6L8 10L12 6" stroke="#E8E8E8" stroke-width="2" />
+                </svg>
+              </div>
+              <div class="date-dropdown" id="month-dropdown"></div>
+            </div>
+            <div class="date-input-wrapper">
+              <div class="date-input day" onclick="toggleDropdown(this, 'day')">
+                <span class="date-value">일</span>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                  <path d="M4 6L8 10L12 6" stroke="#E8E8E8" stroke-width="2" />
+                </svg>
+              </div>
+              <div class="date-dropdown" id="day-dropdown"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-section">
+          <div class="form-label">성별</div>
+          <div class="gender-buttons" id="genderButtons">
+            <button type="button" class="gender-btn" data-value="male">
+              남성
+            </button>
+            <button type="button" class="gender-btn" data-value="female">
+              여성
+            </button>
+          </div>
+          <!-- 성별 숨김값 (버튼 클릭 시 채움) -->
+          <input type="hidden" name="gender" id="gender" required />
+        </div>
+
+        <!-- 생년월일 숨김값(커스텀 UI → hidden으로 전달) -->
+        <input type="hidden" name="birth_year" id="birth_year" required />
+        <input type="hidden" name="birth_month" id="birth_month" required />
+        <input type="hidden" name="birth_day" id="birth_day" required />
+
+        <button type="submit" class="next-button">다음</button>
+      </form>
+    </div>
+
+    <!-- 동작은 모두 script.js로 이식 -->
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NKG7DXM5");
+    </script>
+    <!— End Google Tag Manager —>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>화해 - 주의 성분</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      button {
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button:focus,
+      button:focus-visible,
+      button:active,
+      button:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      * {
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+      }
+
+      html {
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
+      .mobile-container {
+        width: 100%;
+        max-width: 402px;
+        margin: 0 auto;
+        position: relative;
+        background: #fff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .top-bar {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 402px;
+        height: 105px;
+        background: #fff;
+        z-index: 1000;
+        /* 상단 탭에만 구분선 표시 */
+      }
+
+      .top-nav {
+        margin-top: 20px;
+        padding: 0 20px;
+        height: 44px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .back-button {
+        width: 17px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        position: absolute;
+        left: 20px;
+      }
+
+      .page-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #111;
+      }
+
+      .tab-bar {
+        height: 40px;
+        display: flex;
+        border-bottom: 1px solid #e8e8e8;
+      }
+
+      .tab {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        color: #111;
+        cursor: pointer;
+        border-bottom: 1px solid transparent;
+      }
+
+      .tab.active {
+        font-weight: 700;
+        border-bottom: 1px solid #000;
+      }
+
+      .tab.inactive {
+        font-weight: 400;
+        border-bottom: 1px solid #e8e8e8;
+      }
+
+      .content {
+        /* 고정 상단바(105px) + 여백 고려 */
+        padding-top: 110px;
+        padding-bottom: 100px;
+      }
+
+      .info-banner {
+        background: #f7f7f7;
+        padding: 10px;
+        margin: 0 20px 20px;
+        text-align: center;
+        font-size: 13px;
+        color: #111;
+        border-radius: 6px;
+      }
+
+      .section-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #111;
+        padding: 0 20px;
+        margin-bottom: 10px;
+      }
+
+      .ingredient-list {
+        padding: 0 20px;
+      }
+
+      .ingredient-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 8px;
+        padding: 6px 0;
+      }
+
+      .ingredient-left {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .thumbs-down-icon {
+        width: 12px;
+        height: 12px;
+        transform: rotate(180deg);
+      }
+
+      .ingredient-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .ingredient-effect {
+        font-size: 10px;
+        font-weight: 600;
+        color: #ff5555;
+      }
+
+      .ingredient-name {
+        font-size: 12px;
+        font-weight: 500;
+        color: #000;
+      }
+
+      .ingredient-arrow {
+        width: 14px;
+        height: 14px;
+      }
+
+      .divider {
+        height: 1px;
+        background: #e8e8e8;
+        margin: 0 8px 4px;
+      }
+
+      .notice-box {
+        background: #f7f7f7;
+        border-radius: 8px;
+        padding: 20px 20px;
+        margin: 10px;
+        font-size: 12px;
+        color: #666;
+        line-height: 1.5;
+      }
+
+      .notice-box ul {
+        margin: 0;
+        padding-left: 18px;
+      }
+
+      .notice-box li {
+        margin-bottom: 10px;
+      }
+
+      .edit-button {
+        width: 362px;
+        height: 43px;
+        border: 1px solid #000;
+        border-radius: 8px;
+        background: #fff;
+        font-size: 15px;
+        font-weight: 500;
+        color: #000;
+        cursor: pointer;
+        margin: 20px auto;
+        display: block;
+      }
+
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 402px;
+        background: #fff;
+        border-top: 1px solid #e8e8e8;
+        padding: 8px 20px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        cursor: pointer;
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .nav-item:focus,
+      .nav-item:focus-visible,
+      .nav-item:active,
+      .nav-item:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      .nav-item.active {
+        color: #aaa;
+      }
+
+      .nav-item.inactive {
+        color: #aaa;
+      }
+
+      .nav-icon {
+        width: 27px;
+        height: 27px;
+      }
+
+      .nav-text {
+        font-size: 11px;
+      }
+
+      .nav-ai {
+        background: #19d7d2;
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      .nav-ai:focus,
+      .nav-ai:focus-visible,
+      .nav-ai:active,
+      .nav-ai:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NKG7DXM5"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!— End Google Tag Manager (noscript) —>
+    <div class="mobile-container">
+      <div class="top-bar">
+        <div class="top-nav">
+          <button
+            class="back-button"
+            onclick="location.href='ai_test_result.html'"
+          >
+            <img
+              src="./img/back.png"
+              alt="back"
+              style="width: 17px; height: 24px"
+            />
+          </button>
+          <div class="page-title">성분</div>
+        </div>
+        <div class="tab-bar">
+          <div class="tab inactive" onclick="location.href='good_result.html'">
+            나에게 맞는 추천 성분
+          </div>
+          <div class="tab active">주의해야 할 성분</div>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="info-banner">
+          지성 부위 과자극 또는 건성 부위 탈수 유발 가능성이 있는 성분
+        </div>
+
+        <div class="section-title">민감성 피부 관련 성분</div>
+
+        <div class="ingredient-list">
+          <div class="ingredient-item">
+            <div class="ingredient-left">
+              <img
+                src="./img/thumbs-down.png"
+                alt="thumbs-up"
+                style="width: 12px; height: 12px"
+              />
+              <div class="ingredient-info">
+                <span class="ingredient-effect">건조함 유발</span>
+                <span class="ingredient-name">에탄올</span>
+              </div>
+            </div>
+            <svg class="ingredient-arrow" viewBox="0 0 14 14" fill="none">
+              <path d="M5 3L9 7L5 11" stroke="#666" stroke-width="2" />
+            </svg>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="ingredient-item">
+            <div class="ingredient-left">
+              <img
+                src="./img/thumbs-down.png"
+                alt="thumbs-up"
+                style="width: 12px; height: 12px"
+              />
+              <div class="ingredient-info">
+                <span class="ingredient-effect">알레르기 · 피부염 유발</span>
+                <span class="ingredient-name">합성 향료/향수</span>
+              </div>
+            </div>
+            <svg class="ingredient-arrow" viewBox="0 0 14 14" fill="none">
+              <path d="M5 3L9 7L5 11" stroke="#666" stroke-width="2" />
+            </svg>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="ingredient-item">
+            <div class="ingredient-left">
+              <img
+                src="./img/thumbs-down.png"
+                alt="thumbs-up"
+                style="width: 12px; height: 12px"
+              />
+              <div class="ingredient-info">
+                <span class="ingredient-effect">홍조 유발</span>
+                <span class="ingredient-name"
+                  >스크럽 입자 (살구씨, 호두 미세비즈 등)</span
+                >
+              </div>
+            </div>
+            <svg class="ingredient-arrow" viewBox="0 0 14 14" fill="none">
+              <path d="M5 3L9 7L5 11" stroke="#666" stroke-width="2" />
+            </svg>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="ingredient-item">
+            <div class="ingredient-left">
+              <img
+                src="./img/thumbs-down.png"
+                alt="thumbs-up"
+                style="width: 12px; height: 12px"
+              />
+              <div class="ingredient-info">
+                <span class="ingredient-effect">호르몬 · 염증 반응</span>
+                <span class="ingredient-name">파라벤</span>
+              </div>
+            </div>
+            <svg class="ingredient-arrow" viewBox="0 0 14 14" fill="none">
+              <path d="M5 3L9 7L5 11" stroke="#666" stroke-width="2" />
+            </svg>
+          </div>
+
+          <div class="divider"></div>
+
+          <div class="ingredient-item">
+            <div class="ingredient-left">
+              <img
+                src="./img/thumbs-down.png"
+                alt="thumbs-up"
+                style="width: 12px; height: 12px"
+              />
+              <div class="ingredient-info">
+                <span class="ingredient-effect">강한 방부 성분</span>
+                <span class="ingredient-name">페녹시 에탄올</span>
+              </div>
+            </div>
+            <svg class="ingredient-arrow" viewBox="0 0 14 14" fill="none">
+              <path d="M5 3L9 7L5 11" stroke="#666" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="notice-box">
+          <ul>
+            <li>
+              구매 전 제조 ・판매업자가 표기한 전성분 표를 한 번 더 확인하시길
+              권장드립니다.
+            </li>
+            <li>
+              화해 정보를 허가 없이 상업적으로 활용할 경우, 법적 조치를 받을 수
+              있습니다.
+            </li>
+            <li>
+              성분별 해당 제품 내 배합 비율은 브랜드사에서 제공한 정보로 모든
+              책임은 브랜드사에 있습니다.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- <div class="bottom-nav">
+            <div class="nav-item inactive" onclick="location.href='main.html'">
+                <img src="./home.png" alt="home" style="width:27px; height:26px;">
+                <span class="nav-text">홈</span>
+            </div>
+            <div class="nav-ai" onclick="location.href='ai_test.html'">AI</div>
+            <div class="nav-item inactive" onclick="location.href='mypage.html'">
+                <img src="./user.png" alt="user" style="width:27px; height:26px;">
+                <span class="nav-text">마이</span>
+            </div>
+        </div> -->
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>

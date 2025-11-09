@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NKG7DXM5");
+    </script>
+    <!— End Google Tag Manager —>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>화해 - AI 피부 테스트</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      button {
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button:focus,
+      button:focus-visible,
+      button:active,
+      button:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      * {
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+      }
+
+      html {
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
+      .mobile-container {
+        width: 100%;
+        max-width: 402px;
+        margin: 0 auto;
+        position: relative;
+        background: #fff;
+        overflow: hidden;
+      }
+
+      .overlay {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 402px;
+        height: 100vh;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 2000;
+      }
+
+      .consent-modal {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 340px;
+        background: #fff;
+        border-radius: 10px;
+        padding: 24px 19px;
+        z-index: 2001;
+        max-height: 534px;
+        overflow-y: auto;
+      }
+
+      .consent-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #111;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .consent-time {
+        font-size: 12px;
+        color: #000;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .consent-time strong {
+        font-weight: 700;
+      }
+
+      .consent-desc {
+        font-size: 12px;
+        color: #000;
+        line-height: 1.4;
+        margin-bottom: 20px;
+        text-align: center;
+      }
+
+      .consent-box {
+        background: #eaeaea;
+        padding: 20px;
+        border-radius: 6px;
+        margin-bottom: 20px;
+      }
+
+      .consent-box-text {
+        font-size: 11px;
+        color: #000;
+        line-height: 1.4;
+        text-align: left;
+      }
+
+      .consent-agree-text {
+        font-size: 11px;
+        color: #000;
+        text-align: center;
+        margin-bottom: 10px;
+      }
+
+      .consent-button {
+        width: 100%;
+        height: 35px;
+        background: #19d7d2;
+        border: none;
+        border-radius: 4px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+
+      .consent-disagree {
+        font-size: 11px;
+        color: #000;
+        text-align: center;
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      .top-bar {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 402px;
+        height: 60px;
+        background: #fff;
+        z-index: 1000;
+        border-bottom: 1px solid #e8e8e8;
+      }
+
+      .top-nav {
+        margin-top: 20px;
+        padding: 0 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .back-button {
+        width: 17px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .home-button {
+        width: 27px;
+        height: 27px;
+      }
+
+      .content {
+        padding-top: 90px;
+        /* padding-bottom: px; */
+      }
+
+      .header-section {
+        text-align: center;
+        margin-bottom: 20px;
+        padding: 0 20px;
+      }
+
+      .header-title {
+        font-size: 20px;
+        font-weight: 700;
+        color: #00a5aa;
+        margin-bottom: 15px;
+      }
+
+      .header-desc {
+        font-size: 12px;
+        color: #000;
+        line-height: 1.4;
+        max-width: 265px;
+        margin: 0 auto;
+      }
+
+      .step-card {
+        margin: 0 20px 10px;
+        padding: 20px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 6px;
+      }
+
+      .step-number {
+        font-size: 15px;
+        font-weight: 800 !important;
+        color: #000;
+        margin-bottom: 10px;
+      }
+
+      .step-title {
+        font-size: 15px;
+        font-weight: 800;
+        color: #000;
+        margin-bottom: 10px;
+      }
+
+      .step-desc {
+        font-size: 12px;
+        color: #000;
+        line-height: 1.4;
+        padding-left: 20px;
+      }
+
+      .diagram-example {
+        text-align: right;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        font-size: 10px;
+        color: #959595;
+        padding-right: 20px;
+      }
+
+      .diagram-container {
+        display: flex;
+        justify-content: center;
+        margin-top: 10px;
+      }
+
+      .diagram-box {
+        width: 322px;
+        height: 173px;
+        /* position: relative; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .diagram-inner {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .diagram-chart {
+        width: 322px;
+        height: 173px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        transform-origin: center center;
+        overflow: visible;
+      }
+
+      .diagram-label {
+        position: absolute;
+        font-size: 10px;
+        color: #999;
+        white-space: nowrap;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      .diagram-label.top {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
+      .diagram-label.right-top {
+        top: 24%;
+        right: -20px;
+        text-align: right;
+      }
+
+      .diagram-label.right-bottom {
+        top: 68%;
+        right: -20px;
+        text-align: right;
+      }
+
+      .diagram-label.bottom {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
+      .diagram-label.left-bottom {
+        top: 68%;
+        left: -20px;
+        text-align: left;
+      }
+
+      .diagram-label.left-top {
+        top: 24%;
+        left: -20px;
+        text-align: left;
+      }
+
+      .start-button {
+        display: block;
+        width: 362px;
+        height: 43px;
+        background: #19d7d2;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        margin: 40px auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .start-button svg {
+        vertical-align: middle;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NKG7DXM5"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!— End Google Tag Manager (noscript) —>
+    <div class="mobile-container">
+      <div class="overlay" id="overlay">
+        <div class="consent-modal">
+          <h2 class="consent-title">AI 피부 분석 테스트</h2>
+          <p class="consent-time">
+            테스트의 총 소요시간은 <strong>3분</strong>입니다.
+          </p>
+
+          <div class="consent-desc">
+            여러분의 얼굴을 촬영한 후 AI 기능을 통해 분석을 시작합니다.<br />
+            얼굴 사진 촬영에 동의하신다면 아래 '동의'를 클릭해 주세요.<br />
+            세부 내용은 아래에서 확인하시기 바랍니다.
+          </div>
+
+          <div class="consent-box">
+            <div class="consent-box-text">
+              당사는 고객의 AI 피부 분석을 위한 내부 연구 목적으로 여러분의 얼굴
+              사진을 수집·분석합니다.
+              <br />
+              촬영된 얼굴 사진은 AI 기능을 통해 특징 및 패턴을 분석하는 데
+              사용되며, 분석 과정에서 수집된 정보는 통계 및 알고리즘 개선에만
+              활용됩니다. <br />
+              수집된 개인정보는 연구 목적 달성 후 지체 없이 파기되며, 법령에
+              따라 보관이 필요한 경우 해당 기간 동안 안전하게 보관됩니다. <br />
+              해당 정보는 제3자에게 제공되지 않으며, 분석 업무 수행을 위해
+              필요한 경우에 한해 기술 협력업체에 위탁할 수 있습니다. <br />
+              개인정보 수집 및 이용에 동의하지 않으실 수 있으나, 동의하지 않을
+              경우 AI 분석 관련 서비스 참여가 제한될 수 있습니다.
+            </div>
+          </div>
+
+          <p class="consent-agree-text">
+            위 사항을 모두 확인했으며, 동의한다면 동의 버튼을 눌러주세요.
+          </p>
+          <button class="consent-button" onclick="agreeConsent()">동의</button>
+          <p class="consent-disagree" onclick="disagreeConsent()">
+            동의하지않겠습니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="top-bar">
+        <div class="top-nav">
+          <!-- <button class="back-button" onclick="location.href='signup_choice.html'">
+                    <img src="./back.png" alt="back" style="width: 17px; height: 24px;">
+                </button>
+                <img class="home-button" src="./home.png" alt="home" onclick="location.href='main.html'" style="cursor: pointer;"> -->
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="header-section">
+          <h1 class="header-title">AI 피부 테스트</h1>
+          <p class="header-desc">
+            첨단 AI가 피부 수분, 탄력, 트러블 등 핵심 지표를 분석해 나만의 피부
+            타입을 정밀하게 진단합니다.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">1. 나이대 분석</div>
+          <p class="step-desc">
+            간단한 정보 입력으로 연령대별 피부 특성을 파악합니다.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">2. 얼굴 촬영</div>
+          <p class="step-desc">
+            스마트폰 카메라로 얼굴을 촬영하여 피부 상태를 정확하게 확인합니다.
+          </p>
+        </div>
+
+        <div class="step-card">
+          <div class="step-number">3. AI 피부 타입 진단</div>
+          <p class="step-desc">
+            첨단 AI가 피부 수분, 탄력, 트러블 등 핵심 지표를 분석해 나만의 피부
+            타입을 정밀하게 진단합니다.
+          </p>
+          <div class="diagram-container">
+            <div class="diagram-box">
+              <div class="diagram-inner">
+                <img
+                  class="diagram-chart"
+                  src="./img/diagram.png"
+                  alt="피부 진단 차트"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+        <button
+          class="start-button"
+          onclick="location.href='ai_test_consent.html'"
+        >
+          AI 피부분석 시작
+        </button>
+      </div>
+    </div>
+
+    <script>
+      function showModal() {
+        document.getElementById("overlay").style.display = "block";
+      }
+
+      function agreeConsent() {
+        document.getElementById("overlay").style.display = "none";
+        const p = JSON.parse(localStorage.getItem("faceapp_profile") || "{}");
+        p.consent = true; // or "Y"
+        p.timestamp_consent = new Date().toISOString();
+        localStorage.setItem("faceapp_profile", JSON.stringify(p));
+        // 서버에도 기록한다면 /api/consent POST
+
+        location.href = "ai_test_camera.html";
+      }
+
+      function disagreeConsent() {
+        document.getElementById("overlay").style.display = "none";
+        location.href = "ai_test.html";
+      }
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>

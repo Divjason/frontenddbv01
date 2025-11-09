@@ -1,0 +1,86 @@
+body {
+  font-family: "Pretendard Variable", Pretendard, system-ui, -apple-system,
+    "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signup-container {
+  position: relative;
+  width: 402px;
+  height: 874px;
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* 메인 콘텐츠 */
+.logo-section {
+  position: absolute;
+  top: 300px;
+  width: 100%;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.logo-section.visible {
+  opacity: 1;
+}
+
+.logo img {
+  width: 196px;
+  height: 47px;
+}
+
+.slogan {
+  font-weight: 700;
+  font-size: 23px;
+  line-height: 35px;
+  color: #111;
+  width: 220px;
+  margin: 20px auto;
+}
+
+/* 버튼 섹션 */
+.button-section {
+  position: absolute;
+  top: 757px;
+  width: 362px;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  opacity: 0;
+  transition: opacity 1s ease;
+}
+.button-section.visible {
+  opacity: 1;
+}
+
+.desc {
+  font-size: 14px;
+  color: #999;
+  margin-bottom: 15px;
+}
+
+#startButton {
+  width: 362px;
+  height: 43px;
+  background: #19d7d2;
+  border-radius: 8px;
+  color: #fff;
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+#startButton:hover {
+  background: #15c3be;
+}
+
+/* 애니메이션용 */
+.hidden {
+  opacity: 0;
+}

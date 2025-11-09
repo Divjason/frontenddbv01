@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NKG7DXM5");
+    </script>
+    <!— End Google Tag Manager —>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>화해 - 피부 타입 선택</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      button {
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button:focus,
+      button:focus-visible {
+        outline: none;
+        box-shadow: none;
+      }
+
+      * {
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+      }
+
+      html {
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
+      .mobile-container {
+        width: 100%;
+        max-width: 402px;
+        margin: 0 auto;
+        position: relative;
+        background: #fff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .top-bar {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 402px;
+        height: 60px;
+        background: #fff;
+        z-index: 1000;
+        border-bottom: 1px solid #e8e8e8;
+      }
+
+      .top-nav {
+        margin-top: 20px;
+        padding: 0 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .back-button {
+        width: 28px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .page-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111;
+        margin: 100px 0 0 20px;
+        padding-bottom: 10px;
+        line-height: 1.3;
+      }
+
+      .form-section {
+        padding: 0 20px;
+        margin-top: 32px;
+        margin-bottom: 24px;
+      }
+
+      .form-label {
+        font-size: 15px;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 14px;
+        text-align: left;
+      }
+
+      .button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 5px;
+      }
+
+      .skin-btn {
+        padding: 10px 18px;
+        height: 43px;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        background: #fff;
+        font-size: 12px;
+        color: #666;
+        cursor: pointer;
+        white-space: nowrap;
+      }
+
+      .skin-btn.active {
+        border-color: #19d7d2;
+        background: #19d7d2;
+        color: #fff;
+      }
+
+      .start-button {
+        top: 757px;
+        /* left: 50%; */
+        /* transform: translateX(-50%); */
+        width: 362px;
+        height: 43px;
+        background: #19d7d2;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        margin: 40px auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* gap: 8px; */
+        transition: opacity 0.3s, background-color 0.3s;
+      }
+
+      .start-button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      .start-button svg {
+        vertical-align: middle;
+      }
+
+      .survey-section {
+        background: #f7f7f7;
+        margin-top: 40px;
+        padding: 30px 0;
+      }
+
+      .survey-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+
+      .survey-item {
+        margin-bottom: 20px;
+        padding: 0 20px;
+      }
+
+      .survey-question {
+        margin-bottom: 15px;
+      }
+
+      .survey-q-number {
+        font-size: 15px;
+        font-weight: 700;
+        color: #bf9a67;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .survey-q-text {
+        font-size: 14px;
+        font-weight: 500;
+        color: #000;
+        line-height: 1.4;
+        text-align: center;
+      }
+
+      .rating-buttons {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 50px;
+      }
+
+      .rating-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        padding: 4px;
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+      }
+
+      .rating-btn:focus,
+      .rating-btn:focus-visible,
+      .rating-btn:active,
+      .rating-btn:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      .rating-btn::before {
+        content: "";
+        width: 16.8px;
+        height: 16.8px;
+        border: 1.5px solid #c4c4c4;
+        border-radius: 50%;
+        background: #fff;
+        display: block;
+      }
+
+      .rating-btn.active::before {
+        border-color: #19d7d2;
+        background: #19d7d2;
+      }
+
+      .rating-btn img {
+        display: none;
+      }
+
+      .rating-btn .number {
+        font-size: 10px;
+        color: #999;
+      }
+
+      .rating-btn.active .number {
+        color: #19d7d2;
+        font-weight: 500;
+      }
+
+      .option-list {
+        padding: 10px 40px;
+      }
+
+      .option-item {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-bottom: 10px;
+        cursor: pointer;
+        font-size: 12px;
+        color: #666666;
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+        border: none;
+      }
+
+      .option-item:focus,
+      .option-item:focus-visible,
+      .option-item:active,
+      .option-item:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      .option-checkbox {
+        width: 16.8px;
+        height: 16.8px;
+        border: 1px solid #c4c4c4;
+        background: #fff;
+        border-radius: 10px;
+      }
+
+      .option-item.selected .option-checkbox {
+        background: #19d7d2;
+        border-color: #19d7d2;
+      }
+
+      .option-item.selected {
+        color: #19d7d2;
+      }
+
+      .text-input-link {
+        border: none;
+        border-bottom: 1px solid #c4c4c4;
+        background: transparent;
+        padding: 10px 5px;
+        font-size: 10px;
+        color: #666666;
+        text-align: left;
+        outline: none;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .text-input-link::placeholder {
+        color: #c4c4c4;
+      }
+
+      .option-item-other {
+        justify-content: flex-start;
+      }
+
+      .option-item-other .other-input {
+        flex: 1;
+        border: none;
+        border-bottom: 1px solid #c4c4c4;
+        background: transparent;
+        padding: 10px 5px;
+        font-size: 10px;
+        color: #666666;
+        margin-left: auto;
+        outline: none;
+        min-width: 0;
+        pointer-events: none;
+        color: #c4c4c4;
+      }
+
+      .option-item-other.selected .other-input {
+        pointer-events: auto;
+        color: #666666;
+      }
+
+      .option-item-other .other-input::placeholder {
+        color: #c4c4c4;
+      }
+    </style>
+  </head>
+  <body data-page="signup_choice">
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NKG7DXM5"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!— End Google Tag Manager (noscript) —>
+    <div class="mobile-container">
+      <div class="top-bar">
+        <div class="top-nav">
+          <!-- <button class="back-button" onclick="location.href='signup_info.html'">
+                    <img src="./back.png" alt="back" style="width: 17px; height: 24px;">
+                </button> -->
+        </div>
+      </div>
+
+      <h1 class="page-title">당신의 피부 타입을<br />선택해주세요.</h1>
+
+      <div class="form-section skin-type-section">
+        <div class="form-label">피부 타입</div>
+        <div class="button-group">
+          <button class="skin-btn" onclick="selectSkin(this)">중성</button>
+          <button class="skin-btn" onclick="selectSkin(this)">지성</button>
+          <button class="skin-btn" onclick="selectSkin(this)">건성</button>
+          <button class="skin-btn" onclick="selectSkin(this)">복합성</button>
+          <button class="skin-btn" onclick="selectSkin(this)">수부지</button>
+        </div>
+      </div>
+
+      <div class="form-section skin-concern-section">
+        <div class="form-label">피부 고민</div>
+        <div class="button-group">
+          <button class="skin-btn" onclick="selectConcern(this)">아토피</button>
+          <button class="skin-btn" onclick="selectConcern(this)">여드름</button>
+          <button class="skin-btn" onclick="selectConcern(this)">민감성</button>
+          <button class="skin-btn" onclick="selectConcern(this)">
+            미백/잡티
+          </button>
+        </div>
+        <div class="button-group">
+          <button class="skin-btn" onclick="selectConcern(this)">
+            피지/블랙헤드
+          </button>
+          <button class="skin-btn" onclick="selectConcern(this)">
+            다크서클
+          </button>
+          <button class="skin-btn" onclick="selectConcern(this)">모공</button>
+          <button class="skin-btn" onclick="selectConcern(this)">홍조</button>
+        </div>
+        <div class="button-group">
+          <button class="skin-btn" onclick="selectConcern(this)">
+            주름/탄력
+          </button>
+          <button class="skin-btn" onclick="selectConcern(this)">각질</button>
+          <button class="skin-btn" onclick="selectConcern(this)">속건조</button>
+          <button class="skin-btn" onclick="selectConcern(this)">
+            해당없음
+          </button>
+        </div>
+      </div>
+
+      <div class="form-section skin-condition-section">
+        <div class="form-label">피부 컨디션</div>
+        <div class="button-group">
+          <button class="skin-btn" onclick="selectCondition(this)">
+            계절에 따라 변함
+          </button>
+          <button class="skin-btn" onclick="selectCondition(this)">
+            시간대
+          </button>
+          <button class="skin-btn" onclick="selectCondition(this)">
+            생리주기
+          </button>
+        </div>
+        <div class="button-group">
+          <button class="skin-btn" onclick="selectCondition(this)">환경</button>
+          <button class="skin-btn" onclick="selectCondition(this)">
+            식습관
+          </button>
+          <button class="skin-btn" onclick="selectCondition(this)">
+            스트레스
+          </button>
+          <button class="skin-btn" onclick="selectCondition(this)">
+            화장품 변화
+          </button>
+        </div>
+      </div>
+
+      <!-- <button class="start-button" onclick="location.href='ai_test.html'">
+            AI 피부분석 하러가기
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+                <path d="M7 5L12 10L7 15" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button> -->
+
+      <!-- 설문조사 섹션 -->
+      <div class="survey-section">
+        <div class="survey-title">설문조사</div>
+
+        <div class="survey-item survey-item-1">
+          <div class="survey-question">
+            <div class="survey-q-number">Q. 1</div>
+            <div class="survey-q-text">
+              지금까지의 문진 문항들이 피부 상태를 측정하는데
+              <br />
+              충분히 자세하다고 느끼셨나요?
+            </div>
+          </div>
+          <div class="rating-buttons">
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">1</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">2</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">3</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">4</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">5</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="survey-item survey-item-2-1">
+          <div class="survey-question">
+            <div class="survey-q-number">Q. 2 - 1</div>
+            <div class="survey-q-text">
+              <div style="margin-bottom: 4px">
+                충분히 자세하다고 느끼신 이유를 선택해주세요.
+              </div>
+              <div style="font-size: 12px; color: #999">
+                최대 2개까지 선택 가능합니다.
+              </div>
+            </div>
+          </div>
+          <div class="option-list">
+            <div class="option-item" onclick="toggleOption(this)">
+              <div class="option-checkbox"></div>
+              <span>문항 수가 충분함</span>
+            </div>
+            <div class="option-item" onclick="toggleOption(this)">
+              <div class="option-checkbox"></div>
+              <span>질문이 자세함</span>
+            </div>
+            <div class="option-item" onclick="toggleOption(this)">
+              <div class="option-checkbox"></div>
+              <span>피부 고민의 반영이 다양함</span>
+            </div>
+            <div class="option-item" onclick="toggleOption(this)">
+              <div class="option-checkbox"></div>
+              <span>필수 문항 구성이 충분</span>
+            </div>
+            <div class="option-item option-item-other">
+              <div
+                class="option-checkbox"
+                onclick="toggleOption(this.closest('.option-item'))"
+              ></div>
+              <span onclick="toggleOption(this.closest('.option-item'))"
+                >기타</span
+              >
+              <input
+                type="text"
+                class="other-input"
+                placeholder="의견을 남겨주세요."
+                onclick="event.stopPropagation();"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="survey-item survey-item-2-2">
+          <div class="survey-question">
+            <div class="survey-q-number">Q. 2 - 2</div>
+            <div class="survey-q-text">
+              <div style="margin-bottom: 4px">
+                충분하지 않다고 느끼신 이유를 선택해주세요.
+              </div>
+              <div style="font-size: 12px; color: #999">
+                최대 2개까지 선택 가능합니다.
+              </div>
+            </div>
+          </div>
+          <div class="option-list">
+            <div class="option-item" onclick="toggleOption(this)">
+              <div class="option-checkbox"></div>
+              <span>문항 수가 너무 많음</span>
+            </div>
+            <div class="option-item" onclick="toggleOption(this)">
+              <div class="option-checkbox"></div>
+              <span>질문이 너무 간단함</span>
+            </div>
+            <div class="option-item" onclick="toggleOption(this)">
+              <div class="option-checkbox"></div>
+              <span>피부 고민의 반영이 적음</span>
+            </div>
+            <div class="option-item" onclick="toggleOption(this)">
+              <div class="option-checkbox"></div>
+              <span>필수 문항 구성이 충분하지 않음</span>
+            </div>
+            <div class="option-item option-item-other">
+              <div
+                class="option-checkbox"
+                onclick="toggleOption(this.closest('.option-item'))"
+              ></div>
+              <span onclick="toggleOption(this.closest('.option-item'))"
+                >기타</span
+              >
+              <input
+                type="text"
+                class="other-input"
+                placeholder="의견을 남겨주세요."
+                onclick="event.stopPropagation();"
+              />
+            </div>
+          </div>
+        </div>
+
+        <div class="survey-item survey-item-3">
+          <div class="survey-question">
+            <div class="survey-q-number">Q. 3</div>
+            <div class="survey-q-text">
+              추가로 문진에 꼭 반영되었으면 하는 내용이 있다면
+              <br />
+              자유롭게 말씀해주세요.
+            </div>
+          </div>
+          <input
+            type="text"
+            class="text-input-link"
+            placeholder="의견을 남겨주세요."
+          />
+        </div>
+
+        <div class="survey-item survey-item-4">
+          <div class="survey-question">
+            <div class="survey-q-number">Q. 4</div>
+            <div class="survey-q-text">
+              문진을 진행하면서 불편했던 점을 말씀해주세요.
+            </div>
+          </div>
+          <input
+            type="text"
+            class="text-input-link"
+            placeholder="의견을 남겨주세요."
+          />
+        </div>
+
+        <button
+          class="start-button"
+          id="start-button"
+          onclick="return saveSkinAndGo(event)"
+          disabled
+        >
+          AI 피부분석 하러가기
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M7 5L12 10L7 15"
+              stroke="#fff"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <script>
+      function selectSkin(btn) {
+        const formSection = btn.closest(".form-section");
+        formSection
+          .querySelectorAll(".skin-btn")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        // 버튼 활성화 상태 확인
+        if (typeof checkSurveyCompletion === "function") {
+          setTimeout(checkSurveyCompletion, 100);
+        }
+      }
+
+      function selectConcern(btn) {
+        const formSection = btn.closest(".form-section");
+        const allConcernBtns = formSection.querySelectorAll(".skin-btn");
+        const isNoneBtn = btn.textContent.trim() === "해당없음";
+
+        if (isNoneBtn) {
+          // "해당없음" 버튼 클릭 시
+          if (btn.classList.contains("active")) {
+            // 이미 선택되어 있으면 해제
+            btn.classList.remove("active");
+          } else {
+            // 다른 모든 항목 해제 후 "해당없음"만 선택
+            allConcernBtns.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+          }
+        } else {
+          // 일반 항목 클릭 시
+          if (btn.classList.contains("active")) {
+            btn.classList.remove("active");
+          } else {
+            // "해당없음" 버튼이 선택되어 있으면 해제
+            const noneBtn = Array.from(allConcernBtns).find(
+              (b) => b.textContent.trim() === "해당없음"
+            );
+            if (noneBtn && noneBtn.classList.contains("active")) {
+              noneBtn.classList.remove("active");
+            }
+
+            const selected =
+              formSection.querySelectorAll(".skin-btn.active").length;
+            if (selected < 5) {
+              btn.classList.add("active");
+            }
+          }
+        }
+
+        // 버튼 활성화 상태 확인
+        if (typeof checkSurveyCompletion === "function") {
+          setTimeout(checkSurveyCompletion, 100);
+        }
+      }
+
+      function selectCondition(btn) {
+        if (btn.classList.contains("active")) {
+          btn.classList.remove("active");
+        } else {
+          btn.classList.add("active");
+        }
+
+        // 버튼 활성화 상태 확인
+        if (typeof checkSurveyCompletion === "function") {
+          setTimeout(checkSurveyCompletion, 100);
+        }
+      }
+
+      function toggleOption(item) {
+        // 같은 survey-item 내의 option-list에서만 선택된 항목 카운트
+        const surveyItem = item.closest(".survey-item");
+        const optionList = surveyItem.querySelector(".option-list");
+        const selectedCount = optionList.querySelectorAll(
+          ".option-item.selected"
+        ).length;
+
+        // survey-item-2-1 또는 survey-item-2-2 중 하나가 선택되면 다른 섹션의 선택 해제
+        if (surveyItem.classList.contains("survey-item-2-1")) {
+          // survey-item-2-1이 선택되면 survey-item-2-2의 모든 선택 해제
+          const surveyItem2_2 = document.querySelector(".survey-item-2-2");
+          if (surveyItem2_2) {
+            surveyItem2_2
+              .querySelectorAll(".option-item.selected")
+              .forEach((selectedItem) => {
+                selectedItem.classList.remove("selected");
+                // 기타 입력 필드도 비활성화
+                const otherInput = selectedItem.querySelector(".other-input");
+                if (otherInput) {
+                  otherInput.value = "";
+                }
+              });
+          }
+        } else if (surveyItem.classList.contains("survey-item-2-2")) {
+          // survey-item-2-2가 선택되면 survey-item-2-1의 모든 선택 해제
+          const surveyItem2_1 = document.querySelector(".survey-item-2-1");
+          if (surveyItem2_1) {
+            surveyItem2_1
+              .querySelectorAll(".option-item.selected")
+              .forEach((selectedItem) => {
+                selectedItem.classList.remove("selected");
+                // 기타 입력 필드도 비활성화
+                const otherInput = selectedItem.querySelector(".other-input");
+                if (otherInput) {
+                  otherInput.value = "";
+                }
+              });
+          }
+        }
+
+        if (item.classList.contains("selected")) {
+          item.classList.remove("selected");
+        } else if (selectedCount < 2) {
+          item.classList.add("selected");
+        }
+
+        // 버튼 활성화 상태 확인
+        if (typeof checkSurveyCompletion === "function") {
+          setTimeout(checkSurveyCompletion, 100);
+        }
+      }
+
+      function validateSurvey() {
+        // 피부 타입 체크
+        const skinType = document.querySelector(
+          ".skin-type-section .skin-btn.active"
+        );
+        if (!skinType) {
+          alert("피부 타입을 선택해주세요.");
+          return;
+        }
+
+        // 피부 고민 체크
+        const skinConcern = document.querySelector(
+          ".skin-concern-section .skin-btn.active"
+        );
+        if (!skinConcern) {
+          alert("피부 고민을 선택해주세요.");
+          return;
+        }
+
+        // 피부 컨디션 체크
+        const skinCondition = document.querySelector(
+          ".skin-condition-section .skin-btn.active"
+        );
+        if (!skinCondition) {
+          alert("피부 컨디션을 선택해주세요.");
+          return;
+        }
+
+        // Q.1 체크 (rating-button)
+        const survey1 = document.querySelector(
+          ".survey-item-1 .rating-btn.active"
+        );
+        if (!survey1) {
+          alert("Q.1 항목을 선택해주세요.");
+          return;
+        }
+
+        // Q.2-1 또는 Q.2-2 중 하나만 체크 (둘 중 하나만 선택되어야 함)
+        const survey2_1_selected =
+          document.querySelectorAll(".survey-item-2-1 .option-item.selected")
+            .length > 0;
+        const survey2_2_selected =
+          document.querySelectorAll(".survey-item-2-2 .option-item.selected")
+            .length > 0;
+
+        if (!survey2_1_selected && !survey2_2_selected) {
+          alert("Q.2-1 또는 Q.2-2 항목 중 하나를 선택해주세요.");
+          return;
+        }
+
+        // Q.2-1이 선택된 경우 체크
+        if (survey2_1_selected) {
+          const survey2_1_other = document.querySelector(
+            ".survey-item-2-1 .option-item-other"
+          );
+          if (
+            survey2_1_other &&
+            survey2_1_other.classList.contains("selected")
+          ) {
+            const survey2_1_other_input =
+              survey2_1_other.querySelector(".other-input");
+            if (!survey2_1_other_input.value.trim()) {
+              alert("Q.2-1 기타 의견을 입력해주세요.");
+              return;
+            }
+          }
+        }
+
+        // Q.2-2가 선택된 경우 체크
+        if (survey2_2_selected) {
+          const survey2_2_other = document.querySelector(
+            ".survey-item-2-2 .option-item-other"
+          );
+          if (
+            survey2_2_other &&
+            survey2_2_other.classList.contains("selected")
+          ) {
+            const survey2_2_other_input =
+              survey2_2_other.querySelector(".other-input");
+            if (!survey2_2_other_input.value.trim()) {
+              alert("Q.2-2 기타 의견을 입력해주세요.");
+              return;
+            }
+          }
+        }
+
+        // Q.3 체크 (text-input-link)
+        const survey3 = document.querySelector(
+          ".survey-item-3 .text-input-link"
+        );
+        if (!survey3.value.trim()) {
+          alert("Q.3 항목을 입력해주세요.");
+          return;
+        }
+
+        // Q.4 체크 (text-input-link)
+        const survey4 = document.querySelector(
+          ".survey-item-4 .text-input-link"
+        );
+        if (!survey4.value.trim()) {
+          alert("Q.4 항목을 입력해주세요.");
+          return;
+        }
+
+        // 모든 검증 통과 시 완료 메시지 표시 후 페이지 이동
+        // alert('설문조사가 완료되었습니다.');
+        location.href = "ai_test.html";
+      }
+
+      // 설문조사 완료 상태 확인 함수
+      function checkSurveyCompletion() {
+        // 피부 타입 체크
+        const skinType = document.querySelector(
+          ".skin-type-section .skin-btn.active"
+        );
+
+        // 피부 고민 체크
+        const skinConcern = document.querySelector(
+          ".skin-concern-section .skin-btn.active"
+        );
+
+        // 피부 컨디션 체크
+        const skinCondition = document.querySelector(
+          ".skin-condition-section .skin-btn.active"
+        );
+
+        // Q.1 체크 (rating-button)
+        const survey1 = document.querySelector(
+          ".survey-item-1 .rating-btn.active"
+        );
+
+        // Q.2-1 또는 Q.2-2 중 하나만 체크 (둘 중 하나만 선택되어야 함)
+        const survey2_1_selected =
+          document.querySelectorAll(".survey-item-2-1 .option-item.selected")
+            .length > 0;
+        const survey2_2_selected =
+          document.querySelectorAll(".survey-item-2-2 .option-item.selected")
+            .length > 0;
+
+        // Q.2-1이 선택된 경우 기타 입력 확인
+        let survey2_1_complete = true;
+        if (survey2_1_selected) {
+          const survey2_1_other = document.querySelector(
+            ".survey-item-2-1 .option-item-other"
+          );
+          if (
+            survey2_1_other &&
+            survey2_1_other.classList.contains("selected")
+          ) {
+            const survey2_1_other_input =
+              survey2_1_other.querySelector(".other-input");
+            if (!survey2_1_other_input || !survey2_1_other_input.value.trim()) {
+              survey2_1_complete = false;
+            }
+          }
+        }
+
+        // Q.2-2가 선택된 경우 기타 입력 확인
+        let survey2_2_complete = true;
+        if (survey2_2_selected) {
+          const survey2_2_other = document.querySelector(
+            ".survey-item-2-2 .option-item-other"
+          );
+          if (
+            survey2_2_other &&
+            survey2_2_other.classList.contains("selected")
+          ) {
+            const survey2_2_other_input =
+              survey2_2_other.querySelector(".other-input");
+            if (!survey2_2_other_input || !survey2_2_other_input.value.trim()) {
+              survey2_2_complete = false;
+            }
+          }
+        }
+
+        // Q.3 체크 (text-input-link)
+        const survey3 = document.querySelector(
+          ".survey-item-3 .text-input-link"
+        );
+        const survey3_complete = survey3 && survey3.value.trim();
+
+        // Q.4 체크 (text-input-link)
+        const survey4 = document.querySelector(
+          ".survey-item-4 .text-input-link"
+        );
+        const survey4_complete = survey4 && survey4.value.trim();
+
+        // 모든 질문이 완료되었는지 확인
+        const isComplete =
+          skinType &&
+          skinConcern &&
+          skinCondition &&
+          survey1 &&
+          (survey2_1_selected || survey2_2_selected) &&
+          survey2_1_complete &&
+          survey2_2_complete &&
+          survey3_complete &&
+          survey4_complete;
+
+        const startButton = document.getElementById("start-button");
+        if (startButton) {
+          startButton.disabled = !isComplete;
+        }
+
+        return isComplete;
+      }
+
+      // 페이지 로드 시 설문조사 상태 확인 및 이벤트 리스너 등록
+      document.addEventListener("DOMContentLoaded", function () {
+        // 초기 상태 확인
+        checkSurveyCompletion();
+
+        // 설문조사 버튼 클릭 시 상태 확인
+        const ratingButtons = document.querySelectorAll(".rating-btn");
+        ratingButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            setTimeout(checkSurveyCompletion, 100); // 약간의 지연으로 DOM 업데이트 대기
+          });
+        });
+
+        // Q.3, Q.4 텍스트 입력 시 상태 확인
+        const textInputs = document.querySelectorAll(".text-input-link");
+        textInputs.forEach((textInput) => {
+          textInput.addEventListener("input", checkSurveyCompletion);
+          textInput.addEventListener("keyup", checkSurveyCompletion);
+        });
+
+        // Q.2-1, Q.2-2 기타 입력 시 상태 확인
+        const otherInputs = document.querySelectorAll(".other-input");
+        otherInputs.forEach((otherInput) => {
+          otherInput.addEventListener("input", checkSurveyCompletion);
+          otherInput.addEventListener("keyup", checkSurveyCompletion);
+        });
+      });
+      async function saveSkinAndGo(e) {
+        e && e.preventDefault();
+
+        // 1) 기존 인라인 검증 유지 (validateSurvey가 alert 처리 담당)
+        if (typeof window.validateSurvey === "function")
+          window.validateSurvey();
+
+        // 2) 선택 상태가 실제로 완료됐는지 재확인 (미완이면 아무것도 안 함)
+        const $ = (s, el = document) => el.querySelector(s);
+        const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+
+        const typeBtn = $(".skin-type-section .skin-btn.active");
+        const concerns = $$(".skin-concern-section .skin-btn.active").map((b) =>
+          b.textContent.trim()
+        );
+        const conditions = $$(".skin-condition-section .skin-btn.active").map(
+          (b) => b.textContent.trim()
+        );
+        const q1 = $(".survey-item-1 .rating-btn.active");
+        const q2ok =
+          $$(".survey-item-2-1 .option-item.selected").length > 0 ||
+          $$(".survey-item-2-2 .option-item.selected").length > 0;
+
+        if (
+          !typeBtn ||
+          !concerns.length ||
+          !conditions.length ||
+          !q1 ||
+          !q2ok
+        ) {
+          return false; // 인라인 검증이 안내했으니 추가 알림 불필요
+        }
+
+        // 3) 세션 보장
+        function getSessionId() {
+          let sid = localStorage.getItem("faceapp_session");
+          if (!sid) {
+            sid = crypto?.randomUUID ? crypto.randomUUID() : String(Date.now());
+            localStorage.setItem("faceapp_session", sid);
+            const f = new FormData();
+            f.append("session_id", sid);
+            const API_BASE = (
+              localStorage.getItem("API_BASE") || "http://localhost:12345"
+            ).replace(/\/+$/, "");
+            fetch(`${API_BASE}/api/session`, { method: "POST", body: f }).catch(
+              () => {}
+            );
+          }
+          return sid;
+        }
+
+        // 4) 캐시 업데이트(선택)
+        const skinType = typeBtn.textContent.trim();
+        const profile = JSON.parse(
+          localStorage.getItem("faceapp_profile") || "{}"
+        );
+        profile.skinType = skinType;
+        profile.concerns = concerns;
+        profile.conditions = conditions;
+        localStorage.setItem("faceapp_profile", JSON.stringify(profile));
+
+        // 5) 서버 저장(정말 딱 1회)
+        try {
+          const API_BASE = (
+            localStorage.getItem("API_BASE") || "http://localhost:12345"
+          ).replace(/\/+$/, "");
+          const fd = new FormData();
+          fd.append("session_id", getSessionId());
+          fd.append("skin_type", skinType);
+          fd.append("concerns", JSON.stringify(concerns));
+          fd.append("conditions", JSON.stringify(conditions));
+          const r = await fetch(`${API_BASE}/api/skin`, {
+            method: "POST",
+            body: fd,
+          });
+
+          // 서버가 실패 사유를 준다면 콘솔에만 남기고, 사용자 알림은 막습니다(중복 팝업 방지)
+          if (!r.ok) {
+            console.error(
+              "POST /api/skin failed:",
+              r.status,
+              await r.text().catch(() => "")
+            );
+            return false;
+          }
+
+          // 6) 성공 → 다음 페이지
+          location.href = "ai_test_camera.html";
+          return false;
+        } catch (err) {
+          console.error(err);
+          // 여기서도 팝업은 띄우지 않습니다(중복/오탐 방지)
+          return false;
+        }
+      }
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NKG7DXM5");
+    </script>
+    <!— End Google Tag Manager —>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>화해 - AI 분석 결과</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      button {
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button:focus,
+      button:focus-visible,
+      button:active,
+      button:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      * {
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+      }
+
+      html {
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
+      .mobile-container {
+        width: 100%;
+        max-width: 402px;
+        margin: 0 auto;
+        position: relative;
+        background: #fff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .top-bar {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 402px;
+        height: 60px;
+        background: #fff;
+        z-index: 1000;
+        border-bottom: 1px solid #e8e8e8;
+      }
+
+      .top-nav {
+        margin-top: 20px;
+        padding: 0 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .back-button {
+        width: 17px;
+        height: 24px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+      }
+
+      .home-button {
+        width: 27px;
+        height: 27px;
+      }
+
+      .content {
+        padding-top: 90px;
+        /* padding-bottom: 100px; */
+        background: #f7f7f7;
+      }
+
+      .result-header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding: 0 20px;
+      }
+
+      .result-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #000;
+        margin-bottom: 4px;
+      }
+
+      .result-subtitle {
+        font-size: 8px;
+        color: #c4c4c4;
+      }
+
+      .result-image {
+        text-align: center;
+        margin-bottom: -6px;
+        position: relative;
+      }
+
+      .result-image img {
+        width: 297px;
+        height: 238px;
+        border-radius: 10px;
+      }
+
+      .score-section {
+        background: #ffffff;
+        padding: 30px 0;
+        margin-bottom: 13px;
+      }
+
+      .score-text {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        color: #000;
+        margin-bottom: 20px;
+        padding: 0 20px;
+      }
+
+      .score-highlight {
+        color: #00a5aa;
+      }
+
+      .gauge-bar {
+        width: 362px;
+        height: 22px;
+        background-image: url("./img/gage_back.png");
+        background-size: 100% 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        border-radius: 10px;
+        margin: 0 auto;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .gauge-fill {
+        width: 0%;
+        height: 100%;
+        background: linear-gradient(135deg, #19d7d2, #19d7d230);
+        border-radius: 10px;
+        animation: fillGauge 1s ease-out forwards;
+      }
+
+      @keyframes fillGauge {
+        from {
+          width: 0%;
+        }
+        to {
+          width: 80%;
+        }
+      }
+
+      .summary-section {
+        background: #fff;
+        padding: 20px 0;
+        margin-bottom: 13px;
+      }
+
+      .section-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #000;
+        text-align: center;
+        margin-bottom: 23px;
+      }
+
+      .diagram-box {
+        width: 250px;
+        min-height: 193px;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 10px;
+        margin: 0 auto 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        position: relative;
+        overflow: visible;
+        min-width: 250px;
+      }
+
+      .diagram-inner {
+        width: 153px;
+        height: 153px;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        min-height: 153px;
+      }
+
+      .diagram-chart::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border: none;
+        border-radius: 50%;
+        z-index: 1;
+      }
+
+      .diagram-chart {
+        width: 120px;
+        height: 120px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        transform-origin: center center;
+        overflow: visible;
+      }
+
+      .diagram-chart img {
+        width: 120px;
+        height: 120px;
+        display: block;
+        object-fit: contain;
+        object-position: center;
+        transform-origin: center center;
+        max-width: none !important;
+        max-height: none !important;
+      }
+
+      @keyframes expandChart {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.1);
+        }
+        10% {
+          opacity: 0.2;
+          transform: translate(-50%, -50%) scale(0.2);
+        }
+        25% {
+          opacity: 0.4;
+          transform: translate(-50%, -50%) scale(0.4);
+        }
+        50% {
+          opacity: 0.7;
+          transform: translate(-50%, -50%) scale(0.7);
+        }
+        75% {
+          opacity: 0.9;
+          transform: translate(-50%, -50%) scale(0.9);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      .diagram-vector {
+        position: absolute;
+        top: 42%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 79px;
+        height: 74px;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform-origin: center center;
+      }
+
+      .diagram-vector img {
+        width: 79px;
+        height: 74px;
+        display: block;
+        object-fit: contain;
+        object-position: center;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform-origin: center center;
+        transform: translate(-50%, -50%) scale(0.05);
+        opacity: 0;
+      }
+
+      .diagram-vector.animate img {
+        animation: expandVector 800ms ease-in-out forwards;
+      }
+
+      @keyframes expandVector {
+        0% {
+          opacity: 0;
+          transform: translate(-50%, -50%) scale(0.05);
+        }
+        100% {
+          opacity: 1;
+          transform: translate(-50%, -50%) scale(1);
+        }
+      }
+
+      .diagram-label {
+        position: absolute;
+        font-size: 10px;
+        color: #000;
+        font-family: "Pretendard Variable", sans-serif;
+        white-space: nowrap;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      .diagram-label.top {
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
+      .diagram-label.right-top {
+        top: 24%;
+        right: -10px;
+        text-align: right;
+      }
+
+      .diagram-label.right-bottom {
+        top: 68%;
+        right: -10px;
+        text-align: right;
+      }
+
+      .diagram-label.bottom {
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+      }
+
+      .diagram-label.left-bottom {
+        top: 68%;
+        left: -10px;
+        text-align: left;
+      }
+
+      .diagram-label.left-top {
+        top: 24%;
+        left: -10px;
+        text-align: left;
+      }
+
+      .summary-text {
+        padding: 0 20px;
+        font-size: 12px;
+        line-height: 1.5;
+        color: #000;
+        text-align: center;
+      }
+
+      .summary-highlight {
+        color: #00a5aa;
+        font-weight: 600;
+      }
+
+      .product-reviews {
+        margin: 20px 0;
+        padding: 0 20px;
+      }
+
+      .product-reviews-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 20px;
+        padding-bottom: 10px;
+        margin-bottom: 4px;
+      }
+
+      .product-reviews-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #111;
+      }
+
+      .category-selector {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+        color: #666;
+        position: relative;
+        cursor: pointer;
+      }
+
+      .category-dropdown {
+        position: absolute;
+        top: 28px;
+        right: 0;
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        padding: 6px 0;
+        min-width: 140px;
+        display: none;
+        z-index: 10;
+      }
+
+      .category-dropdown.open {
+        display: block;
+      }
+
+      .category-option {
+        padding: 8px 12px;
+        font-size: 12px;
+        color: #333;
+        white-space: nowrap;
+      }
+      .category-option:hover {
+        background: #f7f7f7;
+      }
+      .category-option.selected {
+        color: #00a5aa;
+        font-weight: 600;
+      }
+
+      .ingredients-section {
+        background: #fff;
+        padding: 20px 0;
+        margin-bottom: 13px;
+      }
+
+      .ingredients-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 20px;
+        margin-bottom: 20px;
+      }
+
+      .ingredients-title {
+        font-size: 18px;
+        font-weight: 700;
+        color: #000;
+      }
+
+      .more-link {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        font-size: 12px;
+        color: #666;
+      }
+
+      .ingredient-list {
+        padding: 0 25px;
+      }
+
+      .ingredient-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: start;
+        margin-bottom: 10px;
+      }
+
+      .ingredient-left {
+        display: flex;
+        gap: 10px;
+        align-items: start;
+      }
+
+      .ingredient-label {
+        font-size: 16px;
+        font-weight: 600;
+        color: #00a5aa;
+        width: 11px;
+      }
+
+      .ingredient-name {
+        font-size: 12px;
+        font-weight: 600;
+        color: #000;
+        width: 70px;
+      }
+
+      .ingredient-desc {
+        font-size: 12px;
+        color: #666;
+        width: 240px;
+        line-height: 1.9;
+      }
+
+      .survey-section {
+        background: #f7f7f7;
+        padding: 30px 0;
+        margin-top: 30px;
+      }
+
+      .survey-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+
+      .survey-item {
+        margin-bottom: 20px;
+        padding: 0 20px;
+      }
+
+      .survey-q-number {
+        font-size: 15px;
+        font-weight: 700;
+        color: #bf9a67;
+        margin-bottom: 10px;
+        text-align: center;
+      }
+
+      .survey-q-text {
+        font-size: 14px;
+        font-weight: 500;
+        color: #000;
+        margin-bottom: 15px;
+        text-align: center;
+      }
+
+      .rating-buttons {
+        display: flex;
+        justify-content: space-between;
+        padding: 10px 50px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .rating-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        width: 16.807px;
+        padding: 4px;
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+      }
+
+      .rating-btn:focus,
+      .rating-btn:focus-visible,
+      .rating-btn:active,
+      .rating-btn:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+      .rating-btn:focus,
+      .rating-btn:focus-visible,
+      .rating-btn:active,
+      .rating-btn:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      .rating-btn::before {
+        content: "";
+        width: 16.807px;
+        height: 16.807px;
+        border: 1.5px solid #c4c4c4;
+        border-radius: 50%;
+        background: #fff;
+        display: block;
+      }
+
+      .rating-btn.active::before {
+        border-color: #19d7d2;
+        background: #19d7d2;
+      }
+
+      .rating-btn.active .number {
+        color: #19d7d2;
+        font-weight: 500;
+      }
+
+      .rating-btn img {
+        display: none;
+      }
+
+      .rating-btn .number {
+        font-size: 10px;
+        color: #999;
+        line-height: 1.4;
+        font-weight: 500;
+        font-family: "Pretendard Variable", sans-serif;
+      }
+
+      .detail-analysis-section {
+        background: #fff;
+        padding: 20px 0;
+        margin-bottom: 13px;
+      }
+
+      .fade-up {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      .fade-up.is-in {
+        animation: fadeUp 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+        animation-delay: 0.2s;
+      }
+      @keyframes fadeUp {
+        0% {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .fade-up-2 {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      .fade-up-2.is-in {
+        animation: fadeUp-2 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+        animation-delay: 0.4s;
+      }
+      @keyframes fadeUp-2 {
+        0% {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .fade-up-3 {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      .fade-up-3.is-in {
+        animation: fadeUp-3 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+        animation-delay: 0.6s;
+      }
+      @keyframes fadeUp-3 {
+        0% {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .fade-up-4 {
+        opacity: 0;
+        transform: translateX(30px);
+      }
+      .fade-up-4.is-in {
+        animation: fadeUp-4 1200ms cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+        animation-delay: 0.8s;
+      }
+      @keyframes fadeUp-4 {
+        0% {
+          opacity: 0;
+          transform: translateX(30px);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0);
+        }
+      }
+
+      .detail-item {
+        padding: 0 20px;
+        margin-bottom: 21px;
+      }
+
+      .detail-number {
+        font-size: 14px;
+        font-weight: 700;
+        color: #bf9a67;
+        margin-bottom: 4px;
+      }
+
+      .detail-text {
+        font-size: 12px;
+        color: #000;
+        line-height: 1.4;
+        padding-left: 15px;
+      }
+
+      .detail-divider {
+        height: 1px;
+        background: #e8e8e8;
+        margin: 0 20px 21px;
+      }
+
+      .product-reviews-section {
+        background: #fff;
+        margin: 20px 0;
+        padding: 0 20px;
+      }
+
+      .product-list {
+        display: flex;
+        gap: 10px;
+        overflow-x: auto;
+        padding-bottom: 10px;
+        /* -ms-overflow-style: none;  IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        touch-action: pan-x;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .product-list::-webkit-scrollbar {
+        display: none; /* Chrome, Safari and Opera */
+      }
+
+      .product-item {
+        min-width: 100px;
+        max-width: 200px;
+        padding: 4px 8px;
+        border-radius: 30px;
+        border: 1px solid #e8e8e8;
+        background: #fff;
+        display: flex;
+        gap: 5px;
+        align-items: center;
+        cursor: pointer;
+        flex-shrink: 0;
+      }
+
+      .product-item.selected {
+        background: #000;
+        border-color: #000;
+        color: #fff;
+      }
+
+      .product-item img {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        flex-shrink: 0;
+        object-fit: cover;
+        display: block;
+      }
+
+      .product-info {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: 11px;
+        line-height: 1.3;
+        overflow: hidden;
+        white-space: nowrap;
+        flex: 1;
+        min-width: 0;
+      }
+
+      .product-info > div {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+
+      .product-info > div:first-child {
+        flex: 1;
+      }
+
+      .product-info > div:last-child {
+        display: none;
+      }
+
+      .selected-product {
+        display: flex;
+        align-items: left;
+        gap: 8px;
+        margin: 16px 0;
+        padding: 0 20px;
+        padding-left: 0;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        outline: none;
+        box-shadow: none;
+        width: 100%;
+        text-align: left;
+      }
+
+      .selected-product:focus,
+      .selected-product:focus-visible,
+      .selected-product:active,
+      .selected-product:hover {
+        border: none;
+        background: transparent;
+        outline: none;
+        box-shadow: none;
+      }
+
+      .selected-product-image {
+        width: 86px;
+        height: 86px;
+        border-radius: 6px;
+        background: #fff;
+        overflow: hidden;
+      }
+
+      .selected-product-info {
+        flex: 1;
+      }
+
+      .selected-product-name {
+        font-size: 13px;
+        color: #000;
+        margin-bottom: 6px;
+        margin-top: 0;
+      }
+
+      .selected-product-price {
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .price-discount {
+        color: #bf9a67;
+      }
+
+      .heart-btn {
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        font-size: 17px;
+        padding: 0;
+        flex-shrink: 0;
+        align-self: center;
+      }
+
+      .heart-btn.active {
+        color: #ff3b5c;
+      }
+
+      .reviews-grid {
+        display: flex;
+        gap: 10px;
+        padding: 0 10px;
+        overflow-x: auto;
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+        touch-action: pan-x;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .reviews-grid::-webkit-scrollbar {
+        display: flex; /* Chrome, Safari and Opera */
+      }
+
+      .review-card {
+        width: 320px;
+        height: 160px;
+        background: #f7f7f7;
+        border-radius: 6px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        flex-shrink: 0;
+      }
+
+      .review-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .review-product-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        object-fit: cover;
+      }
+
+      .review-text {
+        font-size: 14px;
+        color: #000;
+        line-height: 1.4;
+      }
+
+      .review-meta {
+        display: flex;
+        gap: 6px;
+        align-items: center;
+        font-size: 12px;
+        color: #999;
+      }
+
+      .button-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0 auto;
+        width: 402px;
+        height: 85px;
+        max-width: calc(100%);
+        padding: 20px;
+        /* background: #ffffff; */
+      }
+
+      .start-button {
+        display: block;
+        width: 362px;
+        height: 43px;
+        background: #19d7d2;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        z-index: 1000;
+        transition: opacity 0.3s, background-color 0.3s;
+      }
+
+      .start-button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NKG7DXM5"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!— End Google Tag Manager (noscript) —>
+    <div class="mobile-container">
+      <div class="top-bar">
+        <div class="top-nav">
+          <!-- <button class="back-button" onclick="location.href='ai_test_camera.html'">
+                    <img src="./back.png" alt="back" style="width: 17px; height: 24px;">
+                </button>
+                <img class="home-button" src="./home.png" alt="home" onclick="location.href='main.html'" style="cursor: pointer;"> -->
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="result-header">
+          <h1 class="result-title">피부 분석 결과</h1>
+          <p class="result-subtitle">분석 결과 예시 사진입니다.</p>
+        </div>
+
+        <div class="result-image">
+          <img src="./img/face_result.png" alt="AI 분석 결과" />
+        </div>
+
+        <div class="score-section">
+          <div class="score-text">
+            당신의 피부는 현재,
+            <span class="score-highlight">80점</span> 입니다.
+          </div>
+          <div class="gauge-bar">
+            <div class="gauge-fill"></div>
+          </div>
+        </div>
+
+        <div class="summary-section">
+          <h2 class="section-title">요약</h2>
+          <div class="diagram-box">
+            <div class="diagram-inner">
+              <div class="diagram-label top">유분</div>
+              <div class="diagram-label right-top">수분</div>
+              <div class="diagram-label right-bottom">민감</div>
+              <div class="diagram-label bottom">탄력</div>
+              <div class="diagram-label left-bottom">모공</div>
+              <div class="diagram-label left-top">주름</div>
+              <div class="diagram-chart">
+                <img src="./img/diagram-chart.png" alt="피부 진단 차트" />
+              </div>
+              <div class="diagram-vector">
+                <img src="./img/radialgraph.png" alt="방사형 그래프" />
+              </div>
+            </div>
+          </div>
+          <div class="summary-text">
+            피부 전반의 수분이 부족하고 유분은 과다한
+            <span class="summary-highlight">복합성 피부</span>로 나타났습니다.
+            <br />
+            T존은 피지 분비가 활발해 번들거림이 나타나며, <br />
+            U존은 수분 보유력이 낮아 유수분 밸런스 개선이 필요합니다. <br />
+            민감도가 높아 외부 자극에 쉽게 홍조가 나타날 수 있으며, <br />
+            저자극 진정 제품 사용이 권장됩니다. <br />
+            탄력은 양호하나 모공이 다소 넓은 편으로 <br />
+            가벼운 수분 크림을 병행한 꾸준한 관리가 효과적입니다.
+          </div>
+        </div>
+
+        <div class="ingredients-section">
+          <div class="ingredients-header">
+            <h2 class="ingredients-title">나에게 맞는 추천 성분</h2>
+            <a href="good_result.html" class="more-link">
+              <span>더보기</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 3L9 7L5 11" stroke="#666" stroke-width="2" />
+              </svg>
+            </a>
+          </div>
+          <div class="ingredient-list">
+            <div class="ingredient-item">
+              <div class="ingredient-left">
+                <span class="ingredient-label">A</span>
+                <span class="ingredient-name">히알루론산</span>
+              </div>
+              <span class="ingredient-desc"
+                >수분 결합력 강화로 피부 유연성 유지</span
+              >
+            </div>
+            <div class="ingredient-item">
+              <div class="ingredient-left">
+                <span class="ingredient-label">B</span>
+                <span class="ingredient-name">알란토인</span>
+              </div>
+              <span class="ingredient-desc"
+                >민감 피부의 붉은기 및 염증 완화</span
+              >
+            </div>
+            <div class="ingredient-item">
+              <div class="ingredient-left">
+                <span class="ingredient-label">C</span>
+                <span class="ingredient-name">세라마이드</span>
+              </div>
+              <span class="ingredient-desc"
+                >피부 장벽 강화, 수분 유지, 유수분 밸런스 조정</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="ingredients-section">
+          <div class="ingredients-header">
+            <h2 class="ingredients-title">주의해야 할 성분</h2>
+            <a href="bad_result.html" class="more-link">
+              <span>더보기</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 3L9 7L5 11" stroke="#666" stroke-width="2" />
+              </svg>
+            </a>
+          </div>
+          <div class="ingredient-list">
+            <div class="ingredient-item">
+              <div class="ingredient-left">
+                <span class="ingredient-label">D</span>
+                <span class="ingredient-name">에탄올</span>
+              </div>
+              <span class="ingredient-desc">건조함과 홍조, 따가움 유발</span>
+            </div>
+            <div class="ingredient-item">
+              <div class="ingredient-left">
+                <span class="ingredient-label">E</span>
+                <span class="ingredient-name">파라벤</span>
+              </div>
+              <span class="ingredient-desc"
+                >호르몬 및 염증 반응, 장기 사용 시 피부 자극 가능</span
+              >
+            </div>
+            <div class="ingredient-item">
+              <div class="ingredient-left">
+                <span class="ingredient-label">F</span>
+                <span class="ingredient-name">합성 향료/향수</span>
+              </div>
+              <span class="ingredient-desc"
+                >트러블, 가려움, 두통을 야기한 강한 계면활성제</span
+              >
+            </div>
+          </div>
+        </div>
+
+        <div class="detail-analysis-section">
+          <h2 class="section-title">세부 항목별 AI 분석 결과</h2>
+
+          <div class="detail-item fade-up">
+            <div class="detail-number">1. 수분・유분 밸런스</div>
+            <div class="detail-text">
+              T존은 피지가 많아 번들거림이 나타나지만, U존은 수분이 부족한
+              상태입니다. 피지 조절형 토너와 수분 에센스를 병행해 밸런스를
+              맞춰주세요.
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-item fade-up-2">
+            <div class="detail-number">2. 민감도 및 진정 관리</div>
+            <div class="detail-text">
+              외부 자극에 쉽게 붉어지는 예민한 피부로, 향료나 알코올이 없는
+              저자극 제품이 적합합니다. 카모마일·시카·판테놀 성분이 진정에
+              도움을 줍니다.
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-item fade-up-3">
+            <div class="detail-number">3. 모공 및 피지 관리</div>
+            <div class="detail-text">
+              코 주변 모공이 넓고 피지가 쌓이기 쉬운 편입니다. 논코메도젠
+              딥클렌징 마스크를 주 1회 사용해 모공 정화에 도움을 주세요.
+            </div>
+          </div>
+
+          <div class="detail-divider"></div>
+
+          <div class="detail-item fade-up-4">
+            <div class="detail-number">4. 피부 장벽 및 탄력 개선</div>
+            <div class="detail-text">
+              세라마이드, 나이아신아마이드, 히알루론산이 함유된 수분 크림이나
+              앰플을 꾸준히 사용하면 장벽 강화와 탄력 유지에 효과적입니다.
+            </div>
+          </div>
+        </div>
+
+        <div class="product-reviews-section">
+          <div class="product-reviews-header">
+            <h2 class="product-reviews-title">내 피부에 맞는 제품 추천</h2>
+            <div class="category-selector">
+              <span class="category-text">스킨 / 토너</span>
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                class="category-arrow"
+              >
+                <path d="M6 9L12 15L18 9" stroke="#666" stroke-width="2" />
+              </svg>
+              <div class="category-dropdown">
+                <div
+                  class="category-option selected"
+                  data-category="스킨 / 토너"
+                >
+                  스킨 / 토너
+                </div>
+                <div class="category-option" data-category="로션 / 에멀전">
+                  로션 / 에멀전
+                </div>
+                <div class="category-option" data-category="세럼 / 에센스">
+                  세럼 / 에센스
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 토글 -->
+          <div class="product-list">
+            <div class="product-item selected">
+              <img
+                src="./img/Ellipse 5.png"
+                alt="벡터"
+                class="Vector"
+                style="width: 22px; height: 22px"
+              />
+              <div class="product-info">
+                <div>에스네이처 - 아쿠아 오아시스 토너 300ml</div>
+                <div>더블 기획 (토너 + 토너 + 화장솜)</div>
+              </div>
+            </div>
+            <div class="product-item">
+              <img
+                src="./img/Ellipse 5-1.png"
+                alt="벡터"
+                class="Vector"
+                style="width: 22px; height: 22px"
+              />
+              <div class="product-info">
+                <div>토니모리 - 원더 세라마이드 모찌 토너</div>
+                <div>원더 세라마이드 모찌 토너 500ml</div>
+              </div>
+            </div>
+            <div class="product-item">
+              <img
+                src="./img/Ellipse 5-2.png"
+                alt="벡터"
+                class="Vector"
+                style="width: 22px; height: 22px"
+              />
+              <div class="product-info">
+                <div>라운드랩 - 1025 독도 토너</div>
+                <div>1025 독도 토너 500ml</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex; justify-content: space-between">
+            <button class="selected-product" onclick="alert('준비중입니다')">
+              <div class="selected-product-image">
+                <img
+                  id="selected-product-image"
+                  src="./img/Rectangle 9.png"
+                  alt="벡터"
+                  class="Vector"
+                  style="width: 86px; height: 86px"
+                />
+              </div>
+              <div class="selected-product-info">
+                <div class="selected-product-name" id="selected-product-name">
+                  <div>에스네이처 - 아쿠아 오아시스 토너 300ml</div>
+                  <div>더블 기획 (토너 + 토너 + 화장솜)</div>
+                </div>
+                <div class="selected-product-price" id="selected-product-price">
+                  <span class="price-discount">63%</span>
+                  <span> 19,500원</span>
+                </div>
+              </div>
+              <button
+                class="heart-btn"
+                id="heart-btn"
+                onclick="event.stopPropagation(); toggleHeart(this)"
+              >
+                <img
+                  src="./img/heart.png"
+                  alt="하트"
+                  class="heart"
+                  style="width: 16px; height: 14px"
+                />
+              </button>
+            </button>
+          </div>
+
+          <div class="reviews-grid">
+            <div class="review-card">
+              <img
+                src="./img/Vector.png"
+                alt="벡터"
+                class="Vector"
+                style="width: 18px; height: 18px"
+              />
+              <div class="review-text">
+                내 피부 : 속건조 + 수부지 + 복합성피부 닦토든 흡토든 수분
+                차오름! 이건 진정 + 피지조절 + 흡수 미침! 피부 쫀득함
+              </div>
+              <div class="review-meta">
+                <img src="./img/star.png" alt="" />
+                <span>2023.02.15</span>
+                <span>|</span>
+                <span>솔직리뷰퀸_으아이</span>
+              </div>
+            </div>
+            <div class="review-card">
+              <img
+                src="./img/Vector.png"
+                alt="벡터"
+                class="Vector"
+                style="width: 18px; height: 18px"
+              />
+              <div class="review-text">
+                흡토를 할 수록 피부 찹쌀떡 됩니다 <br />
+                그냥 민감성 수부지에 성분 예민 피부인데도 트러블이나 자극 전혀
+                없음
+              </div>
+              <div class="review-meta">
+                <img src="./img/star.png" alt="" />
+                <span>2023.09.14</span>
+                <span>|</span>
+                <span>jian*3319</span>
+              </div>
+            </div>
+            <div class="review-card">
+              <img
+                src="./img/Vector.png"
+                alt="벡터"
+                class="Vector"
+                style="width: 18px; height: 18px"
+              />
+              <div class="review-text">
+                예민보스의 토너 정착템 흡토도 좋지만 개인적으로는 닦토로 애용중
+              </div>
+              <div class="review-meta">
+                <img src="./img/star.png" alt="" />
+                <span>2022.10.31</span>
+                <span>|</span>
+                <span>쨔쨔쨔</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="button-wrapper">
+                <button class="start-button" onclick="location.href='main.html'">화해 시작하기</button> -->
+      </div>
+
+      <div class="survey-section">
+        <div class="survey-title">설문조사</div>
+
+        <div class="survey-item survey-item-1">
+          <div class="survey-q-number">Q. 1</div>
+          <div class="survey-q-text">AI 피부 분석 과정은 직관적이었다.</div>
+          <div class="rating-buttons">
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">1</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">2</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">3</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">4</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">5</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="survey-item survey-item-2">
+          <div class="survey-q-number">Q. 2</div>
+          <div class="survey-q-text">진단 결과의 내용이 이해하기 쉬웠다.</div>
+          <div class="rating-buttons">
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">1</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">2</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">3</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">4</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">5</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="survey-item survey-item-3">
+          <div class="survey-q-number">Q. 3</div>
+          <div class="survey-q-text">AI 피부 진단 결과를 신뢰할 수 있다.</div>
+          <div class="rating-buttons">
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">1</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">2</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">3</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">4</span>
+            </button>
+            <button class="rating-btn" onclick="selectRating(this)">
+              <span class="number">5</span>
+            </button>
+          </div>
+        </div>
+        <div class="button-wrapper">
+          <button
+            class="start-button"
+            id="start-button"
+            onclick="validateSurvey()"
+            disabled
+          >
+            화해 시작하기
+          </button>
+        </div>
+      </div>
+    </div>
+    <script>
+      // 설문조사 완료 상태 확인 함수
+      function checkSurveyCompletion() {
+        const survey1 = document.querySelector(
+          ".survey-item-1 .rating-btn.active"
+        );
+        const survey2 = document.querySelector(
+          ".survey-item-2 .rating-btn.active"
+        );
+        const survey3 = document.querySelector(
+          ".survey-item-3 .rating-btn.active"
+        );
+
+        // 모든 질문이 완료되었는지 확인
+        const isComplete = survey1 && survey2 && survey3;
+
+        const startButton = document.getElementById("start-button");
+        if (startButton) {
+          startButton.disabled = !isComplete;
+        }
+
+        return isComplete;
+      }
+
+      function validateSurvey() {
+        // Q.1 체크
+        const survey1 = document.querySelector(
+          ".survey-item-1 .rating-btn.active"
+        );
+        if (!survey1) {
+          alert("Q.1 항목을 선택해주세요.");
+          return;
+        }
+
+        // Q.2 체크
+        const survey2 = document.querySelector(
+          ".survey-item-2 .rating-btn.active"
+        );
+        if (!survey2) {
+          alert("Q.2 항목을 선택해주세요.");
+          return;
+        }
+
+        // Q.3 체크
+        const survey3 = document.querySelector(
+          ".survey-item-3 .rating-btn.active"
+        );
+        if (!survey3) {
+          alert("Q.3 항목을 선택해주세요.");
+          return;
+        }
+
+        // 모든 검증 통과 시 완료 메시지 표시 후 페이지 이동
+        // alert('설문조사가 완료되었습니다.');
+        location.href = "main.html";
+      }
+
+      // 페이지 로드 시 설문조사 상태 확인 및 이벤트 리스너 등록
+      document.addEventListener("DOMContentLoaded", function () {
+        // 초기 상태 확인
+        checkSurveyCompletion();
+
+        // 설문조사 버튼 클릭 시 상태 확인
+        const ratingButtons = document.querySelectorAll(".rating-btn");
+        ratingButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            setTimeout(checkSurveyCompletion, 100); // 약간의 지연으로 DOM 업데이트 대기
+          });
+        });
+
+        // diagram-vector 스크롤 애니메이션
+        const diagramVector = document.querySelector(".diagram-vector");
+        if (diagramVector) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                // 요소가 뷰포트 중앙에 도달했을 때 애니메이션 실행
+                if (entry.isIntersecting && entry.intersectionRatio >= 0.5) {
+                  entry.target.classList.add("animate");
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.5, // 요소가 50% 이상 보일 때
+              rootMargin: "0px",
+            }
+          );
+
+          observer.observe(diagramVector);
+        }
+
+        // detail-item 스크롤 애니메이션
+        const detailItems = document.querySelectorAll(".detail-item");
+        if (detailItems.length > 0) {
+          const detailObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                // 요소가 뷰포트에 들어왔을 때 애니메이션 실행
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("is-in");
+                  detailObserver.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.3, // 요소가 30% 이상 보일 때
+              rootMargin: "0px",
+            }
+          );
+
+          detailItems.forEach((item) => {
+            detailObserver.observe(item);
+          });
+        }
+
+        const imgEl = document.querySelector(".result-image img"); // 현재 face_result.png 달려있는 그 IMG
+        if (!imgEl) return;
+
+        const url = localStorage.getItem("last_capture_url");
+        const b64 = localStorage.getItem("capturedFaceImage");
+        const src = url || b64; // 서버 URL 우선, 없으면 base64
+
+        if (src) imgEl.src = src;
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>

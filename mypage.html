@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <!-- Google Tag Manager -->
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "https://www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-NKG7DXM5");
+    </script>
+    <!— End Google Tag Manager —>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>화해 - 마이페이지</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Pretendard:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      button {
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      button:focus,
+      button:focus-visible {
+        outline: none;
+        box-shadow: none;
+      }
+
+      * {
+        -webkit-tap-highlight-color: transparent;
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        max-width: 100%;
+      }
+
+      .mobile-container {
+        width: 100%;
+        max-width: 402px;
+        margin: 0 auto;
+        position: relative;
+        background: #fff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      .top-bar {
+        position: fixed;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 402px;
+        height: 60px;
+        background: #fff;
+        z-index: 1000;
+        border-bottom: 1px solid #e8e8e8;
+      }
+
+      .top-nav {
+        margin-top: 20px;
+        padding: 0 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .page-title {
+        font-size: 16px;
+        font-weight: 600;
+        color: #111;
+        flex: 1;
+        text-align: center;
+      }
+
+      .home-button {
+        width: 27px;
+        height: 27px;
+      }
+
+      .gradient-bg {
+        position: absolute;
+        top: 98.6px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+        max-width: 402px;
+        height: 190px; /* 박스가 안으로 들어오도록 여유 높이 */
+        background: linear-gradient(
+          180deg,
+          rgba(25, 215, 210, 0) 28.07%,
+          rgba(25, 215, 210, 0.28) 100%
+        );
+        opacity: 1;
+        z-index: 0; /* 뒤 */
+        pointer-events: none;
+      }
+
+      .content {
+        padding-top: 80px;
+        padding-bottom: 70px;
+      }
+
+      .user-profile {
+        display: flex;
+        /* justify-content: space-between; */
+        align-items: center;
+        padding: 0 20px;
+        margin-bottom: 20px;
+      }
+
+      .user-left {
+        display: flex;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .user-avatar {
+        width: 46px;
+        height: 46px;
+        border-radius: 50%;
+        background: #f0f0f0;
+      }
+
+      .user-info {
+        display: flex;
+        flex-direction: column;
+        gap: 9px;
+      }
+
+      .user-name {
+        font-size: 14px;
+        font-weight: 700;
+        color: #111;
+      }
+
+      .user-tags {
+        display: flex;
+        gap: 8px;
+      }
+
+      .user-tag {
+        background: #f7f7f7;
+        padding: 2px 5px;
+        border-radius: 2px;
+        font-size: 10px;
+        color: #666;
+        width: 40px;
+      }
+
+      .result-card {
+        background: #fff;
+        box-shadow: 0px 0px 5.6px rgba(0, 0, 0, 0.11);
+        border-radius: 8px;
+        padding: 10px 20px;
+        width: 342px; /* 카드 폭 고정 */
+        margin: 0 auto 14px; /* 중앙 정렬 */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        z-index: 2; /* 그라디언트 위 */
+      }
+
+      .result-card-text {
+        font-size: 15px;
+        font-weight: 600;
+        color: #00a5aa;
+      }
+
+      .result-card-link {
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        font-size: 12px;
+        color: #666;
+      }
+
+      .trend-link {
+        background: rgba(255, 255, 255, 0.72);
+        border-radius: 8px;
+        padding: 4px 20px;
+        width: 342px; /* Figma fixed width */
+        height: 31px; /* Figma fixed height */
+        margin: 0 auto 40px; /* center align & 아래 간격 확대 */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        /* border: 1px solid #E8E8E8; 박스 윤곽 */
+        box-shadow: 0px 0px 5.6px rgba(0, 0, 0, 0.11); /* 은은한 그림자 */
+        position: relative;
+        z-index: 2; /* 그라디언트 위 */
+      }
+
+      .trend-link-left {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+      }
+
+      .ingredients-section {
+        padding: 0 20px;
+        margin-bottom: 10px;
+      }
+
+      /* 첫 번째 추천 성분 섹션 상단 여백 확장 */
+      .ingredients-section:first-of-type {
+        margin-top: 32px;
+      }
+
+      .section-title {
+        font-size: 14px;
+        font-weight: 700;
+        color: #111;
+        margin-bottom: 14px;
+        text-align: left;
+      }
+
+      .ingredient-buttons {
+        display: flex;
+        gap: 4px;
+        flex-wrap: nowrap; /* 한 줄 정렬 */
+        /* overflow-x: auto; 가로 스크롤 */
+        padding-bottom: 10px;
+        justify-content: center; /* 가운데 정렬 */
+        -ms-overflow-style: none; /* IE, Edge */
+        scrollbar-width: none; /* Firefox */
+      }
+      .ingredient-buttons::-webkit-scrollbar {
+        display: none;
+      } /* Chrome, Safari */
+
+      .ingredient-btn {
+        padding: 12px 20px;
+        height: 44px;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        background: #fff;
+        font-size: 11px;
+        font-weight: 600;
+        color: #666;
+        white-space: nowrap; /* 줄바꿈 방지 */
+        flex: 0 0 auto; /* 너비 고정, 줄바꿈 방지 */
+      }
+
+      .more-btn {
+        padding: 12px 20px;
+        height: 44px;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        background: #fff;
+        font-size: 12px; /* 폰트 다시 크게 */
+        font-weight: 600;
+        color: #00a5aa;
+        display: flex;
+        align-items: center;
+        gap: 2px;
+        white-space: nowrap; /* 한 줄 표시 */
+        flex: 0 0 auto; /* 줄바꿈 방지 */
+        line-height: 1; /* 세로 정렬 안정화 */
+      }
+
+      .review-card {
+        background: #fff;
+        border: 1px solid #e8e8e8;
+        border-radius: 8px;
+        padding: 20px;
+        width: 342px; /* 카드 폭 고정 */
+        margin: 0 auto 20px; /* 중앙 정렬 */
+      }
+
+      /* 상단 텍스트 + 아이콘 가로 배치 */
+      .review-card-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+      }
+
+      .review-card-title {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .review-card-icon {
+        width: 45px;
+        height: 45px;
+        object-fit: contain;
+        border-radius: 8px;
+        display: block;
+      }
+
+      .review-text {
+        font-size: 12px;
+        color: #000;
+        margin-bottom: 16px;
+      }
+
+      .review-button {
+        width: 100%;
+        height: 43px;
+        background: #19d7d2;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 700;
+        cursor: pointer;
+      }
+
+      /* 설문조사 스타일 (ai_test_result.html과 일관) */
+      .survey-section {
+        background: #f7f7f7;
+        padding: 30px 0;
+        margin-top: 30px;
+      }
+      .survey-title {
+        text-align: center;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 30px;
+      }
+      .survey-item {
+        margin-bottom: 20px;
+        padding: 0 20px;
+      }
+      .survey-q-number {
+        text-align: center;
+        font-size: 15px;
+        font-weight: 700;
+        color: #bf9a67;
+        margin-bottom: 6px;
+      }
+      .survey-q-text {
+        text-align: center;
+        font-size: 14px;
+        font-weight: 500;
+        color: #000;
+        margin-bottom: 12px;
+      }
+      .rating-buttons {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 40px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .rating-btn {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        border: none;
+        background: transparent;
+        cursor: pointer;
+        width: 16.807px;
+        padding: 4px;
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+        position: relative;
+      }
+      .rating-btn:focus,
+      .rating-btn:focus-visible,
+      .rating-btn:active,
+      .rating-btn:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+      .rating-btn::before {
+        content: "";
+        width: 16.807px;
+        height: 16.807px;
+        border: 1.5px solid #c4c4c4;
+        border-radius: 50%;
+        background: #fff;
+        display: block;
+      }
+      .rating-btn.active::before {
+        border-color: #19d7d2;
+        background: #19d7d2;
+      }
+      .rating-btn .number {
+        font-size: 10px;
+        color: #999;
+        line-height: 1.4;
+        font-weight: 500;
+        font-family: "Pretendard Variable", sans-serif;
+      }
+      .rating-btn.active .number {
+        color: #19d7d2;
+        font-weight: 500;
+      }
+      .rating-btn img {
+        display: none;
+      }
+
+      .text-input-link {
+        border: none;
+        border-bottom: 1px solid #c4c4c4;
+        background: transparent;
+        padding: 10px 5px;
+        font-size: 10px;
+        color: #666666;
+        text-align: left;
+        outline: none;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      .text-input-link::placeholder {
+        color: #c4c4c4;
+      }
+
+      .survey-button {
+        width: 362px;
+        max-width: calc(100% - 40px);
+        height: 43px;
+        background: #19d7d2;
+        border: none;
+        border-radius: 8px;
+        color: #fff;
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        transition: opacity 0.3s, background-color 0.3s;
+      }
+
+      .survey-button:disabled {
+        background: #cccccc;
+        cursor: not-allowed;
+        opacity: 0.6;
+      }
+
+      .bottom-nav {
+        position: fixed;
+        bottom: 0;
+        /* left: 50%;
+            transform: translateX(-50%); */
+        width: 100%;
+        max-width: 402px;
+        background: #fff;
+        border-top: 1px solid #e8e8e8;
+        padding: 8px 20px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .nav-item {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2px;
+        cursor: pointer;
+        outline: none;
+        box-shadow: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      .nav-item:focus,
+      .nav-item:focus-visible,
+      .nav-item:active,
+      .nav-item:hover {
+        outline: none;
+        box-shadow: none;
+        border: none;
+      }
+
+      .nav-item.active {
+        color: #666;
+      }
+
+      .nav-item.inactive {
+        color: #aaa;
+      }
+
+      .nav-icon {
+        width: 27px;
+        height: 27px;
+      }
+
+      .nav-text {
+        font-size: 11px;
+      }
+
+      .nav-ai {
+        background: #19d7d2;
+        border-radius: 50%;
+        width: 42px;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .review {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript
+      ><iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-NKG7DXM5"
+        height="0"
+        width="0"
+        style="display: none; visibility: hidden"
+      ></iframe
+    ></noscript>
+    <!— End Google Tag Manager (noscript) —>
+    <div class="mobile-container">
+      <div class="gradient-bg"></div>
+      <div class="top-bar">
+        <div class="top-nav">
+          <div></div>
+          <h1 class="page-title">마이페이지</h1>
+        </div>
+      </div>
+
+      <div class="content">
+        <div class="user-profile">
+          <div class="user-left">
+            <img src="./img/mang.png" alt="프로필" class="user-avatar" />
+            <div class="user-info">
+              <div class="user-name">수연짱</div>
+              <div class="user-tags">
+                <span class="user-tag">20대</span>
+                <span class="user-tag">복합형</span>
+                <span class="user-tag">민감성</span>
+              </div>
+            </div>
+          </div>
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            style="margin-left: 130px"
+          >
+            <path d="M7 5L12 10L7 15" stroke="#666" stroke-width="2" />
+          </svg>
+        </div>
+
+        <div style="padding: 0 20px">
+          <div style="display: flex; margin-bottom: 14px; margin: 10px">
+            <div class="section-title" style="margin-bottom: 0">
+              나의 피부 진단 결과
+            </div>
+            <div
+              style="
+                font-size: 14px;
+                font-weight: 600;
+                color: #00a5aa;
+                text-align: right;
+                margin-left: auto;
+              "
+            >
+              재진단하기
+            </div>
+          </div>
+        </div>
+
+        <div class="result-card">
+          <div class="result-card-text">복합형 피부</div>
+          <div class="result-card-link">
+            <span
+              onclick="location.href='ai_test_result_mypage.html'"
+              style="cursor: pointer"
+              >결과 다시보기</span
+            >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+              <path d="M5 3L9 7L5 11" stroke="#666" stroke-width="2" />
+            </svg>
+          </div>
+        </div>
+
+        <div class="trend-link">
+          <div class="trend-link-left">
+            <img
+              src="./img/streamline.png"
+              alt="프로필"
+              class="user-avatar"
+              style="width: 12px; height: 12px"
+            />
+            <span style="font-size: 12px; color: #666"
+              >주기적인 나의 피부 변화 추이 보러가기</span
+            >
+          </div>
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path d="M5 3L9 7L5 11" stroke="#666" stroke-width="2" />
+          </svg>
+        </div>
+
+        <div class="ingredients-section">
+          <div class="section-title">나에게 맞는 추천 성분</div>
+          <div class="ingredient-buttons">
+            <button class="ingredient-btn">히알루론산</button>
+            <button class="ingredient-btn">판테놀</button>
+            <button class="ingredient-btn">글리세린</button>
+            <button
+              class="more-btn"
+              onclick="location.href='good_ingredient.html'"
+            >
+              <span>더보기</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 3L9 7L5 11" stroke="#00A5AA" stroke-width="2" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="ingredients-section">
+          <div class="section-title">주의해야할 성분</div>
+          <div class="ingredient-buttons">
+            <button class="ingredient-btn">알코올</button>
+            <button class="ingredient-btn">시트릭애씨드</button>
+            <button class="ingredient-btn">레티놀</button>
+            <button
+              class="more-btn"
+              onclick="location.href='bad_ingredient.html'"
+            >
+              <span>더보기</span>
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                <path d="M5 3L9 7L5 11" stroke="#00A5AA" stroke-width="2" />
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="ingredients-section">
+          <div class="section-title">리뷰</div>
+          <div class="review-card">
+            <div class="review-card-top">
+              <div class="review-card-title">
+                <div style="font-weight: 500; font-size: 12px">
+                  화해쇼핑 구매 여부와 상관 없이
+                </div>
+                <div style="font-weight: 700; font-size: 15px">
+                  내가 사용해 본 제품 리뷰 쓰기
+                </div>
+              </div>
+              <img
+                src="./img/write.png"
+                alt="리뷰 작성"
+                class="review"
+                style="width: 45px; height: 45px"
+              />
+            </div>
+            <button class="review-button">리뷰 쓰러가기</button>
+          </div>
+        </div>
+
+        <div class="survey-section">
+          <div class="survey-title">설문조사</div>
+          <div class="survey-item survey-item-1">
+            <div class="survey-q-number">Q. 1</div>
+            <div class="survey-q-text">
+              마이페이지의 정보 구성이 이해하기 쉽고 탐색하기 편리했다.
+            </div>
+            <div class="rating-buttons">
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">1</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">2</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">3</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">4</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">5</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="survey-item survey-item-2">
+            <div class="survey-q-number">Q. 2</div>
+            <div class="survey-q-text">
+              추천을 통해 사용하게 된 제품을 사용하게 되었을 때
+              <br />
+              리뷰를 남길 의향이 있다.
+            </div>
+            <div class="rating-buttons">
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">1</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">2</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">3</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">4</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">5</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="survey-item survey-item-3">
+            <div class="survey-q-number">Q. 3</div>
+            <div class="survey-q-text">
+              '맞는 성분'과 '안맞는 성분'의 안내 정보가
+              <br />
+              피부 관리에 실질적으로 도움이 될 것 같다.
+            </div>
+            <div class="rating-buttons">
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">1</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">2</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">3</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">4</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">5</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="survey-item survey-item-4">
+            <div class="survey-q-number">Q. 4</div>
+            <div class="survey-q-text">
+              향후 AI 피부 진단 서비스를 실제로 체험해 볼 의향이 있다.
+            </div>
+            <div class="rating-buttons">
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">1</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">2</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">3</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">4</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">5</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="survey-item survey-item-5">
+            <div class="survey-q-number">Q. 5</div>
+            <div class="survey-q-text">
+              정기적으로 내 피부 변화를 추적하는 기능이 추가된다면 <br />이용할
+              의향이 있다.
+            </div>
+            <div class="rating-buttons">
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">1</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">2</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">3</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">4</span>
+              </button>
+              <button class="rating-btn" onclick="selectRating(this)">
+                <span class="number">5</span>
+              </button>
+            </div>
+          </div>
+
+          <div class="survey-item survey-item-6">
+            <div class="survey-question">
+              <div class="survey-q-number">Q. 6</div>
+              <div class="survey-q-text">
+                이후 완성된 AI 피부 진단 테스트 안내를 위한
+                <br />이메일을 남겨주세요.
+              </div>
+            </div>
+            <input
+              type="text"
+              class="text-input-link"
+              placeholder="의견을 남겨주세요."
+            />
+          </div>
+
+          <div style="display: flex; justify-content: center; margin-top: 30px">
+            <button
+              class="survey-button"
+              id="survey-button"
+              onclick="validateSurvey()"
+              disabled
+            >
+              제출하기
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="bottom-nav">
+        <div class="nav-item active">
+          <img
+            src="./img/home.png"
+            alt="home"
+            style="width: 27px; height: 27px"
+          />
+          <span class="nav-text">홈</span>
+        </div>
+        <div class="nav-ai">AI</div>
+        <div class="nav-item inactive">
+          <img
+            src="./img/user.png"
+            alt="user"
+            style="width: 27px; height: 26px"
+          />
+          <span class="nav-text">마이</span>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // 설문조사 완료 상태 확인 함수
+      function checkSurveyCompletion() {
+        const survey1 = document.querySelector(
+          ".survey-item-1 .rating-btn.active"
+        );
+        const survey2 = document.querySelector(
+          ".survey-item-2 .rating-btn.active"
+        );
+        const survey3 = document.querySelector(
+          ".survey-item-3 .rating-btn.active"
+        );
+        const survey4 = document.querySelector(
+          ".survey-item-4 .rating-btn.active"
+        );
+        const survey5 = document.querySelector(
+          ".survey-item-5 .rating-btn.active"
+        );
+        const survey6 = document.querySelector(
+          ".survey-item-6 .text-input-link"
+        );
+
+        // 모든 질문이 완료되었는지 확인
+        const isComplete =
+          survey1 &&
+          survey2 &&
+          survey3 &&
+          survey4 &&
+          survey5 &&
+          survey6 &&
+          survey6.value.trim();
+
+        const surveyButton = document.getElementById("survey-button");
+        if (surveyButton) {
+          surveyButton.disabled = !isComplete;
+        }
+
+        return isComplete;
+      }
+
+      function validateSurvey() {
+        // Q.1 체크
+        const survey1 = document.querySelector(
+          ".survey-item-1 .rating-btn.active"
+        );
+        if (!survey1) {
+          alert("Q.1 항목을 선택해주세요.");
+          return;
+        }
+
+        // Q.2 체크
+        const survey2 = document.querySelector(
+          ".survey-item-2 .rating-btn.active"
+        );
+        if (!survey2) {
+          alert("Q.2 항목을 선택해주세요.");
+          return;
+        }
+
+        // Q.3 체크
+        const survey3 = document.querySelector(
+          ".survey-item-3 .rating-btn.active"
+        );
+        if (!survey3) {
+          alert("Q.3 항목을 선택해주세요.");
+          return;
+        }
+
+        // Q.4 체크
+        const survey4 = document.querySelector(
+          ".survey-item-4 .rating-btn.active"
+        );
+        if (!survey4) {
+          alert("Q.4 항목을 선택해주세요.");
+          return;
+        }
+
+        // Q.5 체크
+        const survey5 = document.querySelector(
+          ".survey-item-5 .rating-btn.active"
+        );
+        if (!survey5) {
+          alert("Q.5 항목을 선택해주세요.");
+          return;
+        }
+
+        // Q.6 체크
+        const survey6 = document.querySelector(
+          ".survey-item-6 .text-input-link"
+        );
+        if (!survey6.value.trim()) {
+          alert("Q.6 항목을 입력해주세요.");
+          return;
+        }
+
+        // 모든 검증 통과 시 완료 메시지 표시 후 창 닫기
+        alert("설문조사가 완료되었습니다.");
+        window.close();
+      }
+
+      // 페이지 로드 시 설문조사 상태 확인 및 이벤트 리스너 등록
+      document.addEventListener("DOMContentLoaded", function () {
+        // 초기 상태 확인
+        checkSurveyCompletion();
+
+        // 설문조사 버튼 클릭 시 상태 확인
+        const ratingButtons = document.querySelectorAll(".rating-btn");
+        ratingButtons.forEach((button) => {
+          button.addEventListener("click", function () {
+            setTimeout(checkSurveyCompletion, 100); // 약간의 지연으로 DOM 업데이트 대기
+          });
+        });
+
+        // Q.6 텍스트 입력 시 상태 확인
+        const textInput = document.querySelector(
+          ".survey-item-6 .text-input-link"
+        );
+        if (textInput) {
+          textInput.addEventListener("input", checkSurveyCompletion);
+          textInput.addEventListener("keyup", checkSurveyCompletion);
+        }
+      });
+    </script>
+    <script src="script.js"></script>
+  </body>
+</html>
