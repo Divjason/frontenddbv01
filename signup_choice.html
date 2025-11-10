@@ -1036,7 +1036,8 @@
             const f = new FormData();
             f.append("session_id", sid);
             const API_BASE = (
-              localStorage.getItem("API_BASE") || "http://localhost:12345"
+              localStorage.getItem("API_BASE") ||
+              "https://face-capture-api.onrender.com"
             ).replace(/\/+$/, "");
             fetch(`${API_BASE}/api/session`, { method: "POST", body: f }).catch(
               () => {}
@@ -1058,7 +1059,8 @@
         // 5) 서버 저장(정말 딱 1회)
         try {
           const API_BASE = (
-            localStorage.getItem("API_BASE") || "http://localhost:12345"
+            localStorage.getItem("API_BASE") ||
+            "https://face-capture-api.onrender.com"
           ).replace(/\/+$/, "");
           const fd = new FormData();
           fd.append("session_id", getSessionId());
