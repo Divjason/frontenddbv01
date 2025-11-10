@@ -908,7 +908,7 @@ function toggleHeart(btn) {
    ========================================================= */
 (function () {
   const API_BASE = (
-    localStorage.getItem("API_BASE") || "http://localhost:12345"
+    localStorage.getItem("API_BASE") || "https://face-capture-api.onrender.com"
   ).replace(/\/+$/, "");
 
   // --- 세션 관리 (page1-info.html의 동작을 동일 재현) ---
@@ -1157,7 +1157,7 @@ function toggleHeart(btn) {
 (function () {
   // 필요에 따라 localhost:12345를 환경에 맞춰 바꾸세요.
   const API_BASE = (
-    localStorage.getItem("API_BASE") || "http://localhost:12345"
+    localStorage.getItem("API_BASE") || "https://face-capture-api.onrender.com"
   ).replace(/\/+$/, "");
   const NEXT_PAGE = "ai_test_camera.html"; // 저장 후 이동할 페이지
 
@@ -1257,7 +1257,7 @@ function toggleHeart(btn) {
 
 // ===================== 공통 설정 =====================
 const API_BASE = (
-  localStorage.getItem("API_BASE") || "http://localhost:12345"
+  localStorage.getItem("API_BASE") || "https://face-capture-api.onrender.com"
 ).replace(/\/+$/, "");
 
 // page1/page2와 동일: 세션 ID 로컬+서버 등록  :contentReference[oaicite:9]{index=9}
